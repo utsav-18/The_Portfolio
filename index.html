@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Arpit Portfolio</title>
+    <link rel="stylesheet" href="css/homePage.css">
+</head>
+<body>
+    
+ <!-- Navigation Bar -->
+    <nav>
+        <div class="logo">DigitalPro</div>
+        
+        <ul class="nav-links" id="navLinks">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#portfolio">Portfolio</a></li>
+            <li><a href="#services">Services</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#contact" class="nav-cta">Contact</a></li>
+        </ul>
+
+        <div class="menu-toggle" id="menuToggle">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </nav>
+
+    <div class="hero-container">
+        <canvas id="particleCanvas"></canvas>
+        
+        <div class="hero-content">
+            <div class="hero-text">
+                <h1>
+                    Scaling Brands with <span class="gradient-text">Data-Driven</span> Digital Marketing
+                </h1>
+                
+                <p class="subtext">
+                    Performance marketing, SEO, and growth strategies that convert. We help ambitious brands achieve exponential growth through strategic digital campaigns.
+                </p>
+                
+                <div class="cta-buttons">
+                    <button class="btn btn-primary">
+                        <span>
+                            View Portfolio
+                            <svg class="arrow" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M5 12h14M12 5l7 7-7 7"/>
+                            </svg>
+                        </span>
+                    </button>
+                    
+                    <button class="btn btn-secondary">
+                        Start a Project
+                        <svg class="arrow" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M7 17L17 7M7 7h10v10"/>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+
+            <div class="image-section">
+                <div class="image-container">
+                    <!-- Decorative glowing orbs -->
+                    <div class="glow-orb orb-1"></div>
+                    <div class="glow-orb orb-2"></div>
+
+                    <div class="image-wrapper">
+                        <!-- Replace the src with your actual image URL -->
+                        <img src="images/profile.WEBP" alt="Profile" class="profile-image">
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+<script src="js/homePage.js"></script>
+</body>
+</html>

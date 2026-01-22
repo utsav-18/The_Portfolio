@@ -1,9 +1,9 @@
-// Canvas setup
+ // Canvas setup
         const canvas = document.getElementById('particleCanvas');
         const ctx = canvas.getContext('2d');
 
         let particles = [];
-        const particleCount = 80;
+        const particleCount = 90;
         const maxDistance = 150;
         let mouse = { x: null, y: null, radius: 150 };
 
@@ -15,21 +15,28 @@
 
         class Particle {
             constructor() {
+                this.reset();
                 this.x = Math.random() * canvas.width;
                 this.y = Math.random() * canvas.height;
-                this.vx = (Math.random() - 0.5) * 0.5;
-                this.vy = (Math.random() - 0.5) * 0.5;
+            }
+
+            reset() {
+                this.vx = (Math.random() - 0.5) * 0.8;
+                this.vy = (Math.random() - 0.5) * 0.8;
                 this.radius = Math.random() * 2 + 1;
                 this.opacity = Math.random() * 0.5 + 0.3;
             }
 
             update() {
+                // Automatic movement
                 this.x += this.vx;
                 this.y += this.vy;
 
+                // Bounce off edges
                 if (this.x < 0 || this.x > canvas.width) this.vx *= -1;
                 if (this.y < 0 || this.y > canvas.height) this.vy *= -1;
 
+                // Mouse interaction
                 if (mouse.x !== null && mouse.y !== null) {
                     const dx = mouse.x - this.x;
                     const dy = mouse.y - this.y;
@@ -38,15 +45,24 @@
                     if (distance < mouse.radius) {
                         const force = (mouse.radius - distance) / mouse.radius;
                         const angle = Math.atan2(dy, dx);
-                        this.vx -= Math.cos(angle) * force * 0.2;
-                        this.vy -= Math.sin(angle) * force * 0.2;
+                        this.vx -= Math.cos(angle) * force * 0.3;
+                        this.vy -= Math.sin(angle) * force * 0.3;
                     }
                 }
 
-                this.vx *= 0.99;
-                this.vy *= 0.99;
+                // Slight damping for smoother movement
+                this.vx *= 0.995;
+                this.vy *= 0.995;
 
+                // Maintain minimum speed for continuous movement
                 const speed = Math.sqrt(this.vx * this.vx + this.vy * this.vy);
+                if (speed < 0.3) {
+                    const angle = Math.random() * Math.PI * 2;
+                    this.vx = Math.cos(angle) * 0.5;
+                    this.vy = Math.sin(angle) * 0.5;
+                }
+
+                // Cap maximum speed
                 if (speed > 2) {
                     this.vx = (this.vx / speed) * 2;
                     this.vy = (this.vy / speed) * 2;

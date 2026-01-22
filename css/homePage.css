@@ -1,4 +1,4 @@
-/* ROOT COLOR PALETTE */
+ /* ROOT COLOR PALETTE */
         :root {
             --bg-dark: #050505;
             --bg-card: #0a0a0a;
@@ -141,24 +141,66 @@
             transform: rotate(-45deg) translate(7px, -7px);
         }
 
+        /* Particle Canvas - Fixed Background */
+        #particleCanvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, var(--bg-dark) 0%, #0a0a0f 100%);
+            z-index: 0;
+        }
+
         .hero-container {
             position: relative;
             width: 100%;
             min-height: 100vh;
-            overflow: hidden;
             display: flex;
             align-items: center;
             justify-content: center;
             padding: 120px 40px 60px;
         }
 
-        #particleCanvas {
-            position: absolute;
-            top: 0;
-            left: 0;
+        /* Additional Sections Container */
+        .additional-sections {
+            position: relative;
             width: 100%;
-            height: 100%;
-            background: linear-gradient(135deg, var(--bg-dark) 0%, #0a0a0f 100%);
+            min-height: 100vh;
+            z-index: 1;
+        }
+
+        .section-placeholder {
+            position: relative;
+            width: 100%;
+            min-height: 50vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 80px 40px;
+        }
+
+        .placeholder-box {
+            max-width: 1400px;
+            width: 100%;
+            padding: 60px 40px;
+            background: rgba(10, 10, 10, 0.6);
+            backdrop-filter: blur(20px);
+            border: 2px dashed rgba(255, 140, 0, 0.3);
+            border-radius: 20px;
+            text-align: center;
+        }
+
+        .placeholder-box h2 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 2rem;
+            color: var(--primary-orange);
+            margin-bottom: 1rem;
+        }
+
+        .placeholder-box p {
+            color: var(--text-dim);
+            font-size: 1.1rem;
         }
 
         .hero-content {
@@ -298,131 +340,131 @@
             transform: rotate(45deg);
         }
 
-
-
-
-        /* ===============================
-        IMAGE SECTION – HOVER GLOW ONLY
-        ================================ */
-
+        /* Image Section */
         .image-section {
-            margin-left: 80px;
             position: relative;
+            opacity: 0;
             animation: fadeInUp 1s ease 0.4s forwards;
         }
 
-        /* container */
         .image-container {
             position: relative;
-            display: inline-block;
+            border-radius: 10px;
+            overflow: visible;
         }
 
-        /* wrapper */
+        /* ↓ width reduced here */
         .image-wrapper {
             position: relative;
-            border-radius: 18px;
+            border-radius: 10px;
             overflow: hidden;
-            z-index: 2;
-            transition: transform 0.4s ease;
+            box-shadow: 0 25px 60px rgba(0, 0, 0, 0.6);
+            transition: all 0.4s ease;
+            max-height: calc(100vh - 280px);
+
+            max-width: 540px;   /* NEW */
+            margin: 0 auto;     /* NEW */
         }
 
-        /* glow layer (hidden by default) */
+        .image-wrapper:hover {
+            box-shadow: 0 30px 80px rgba(255, 140, 0, 0.6);
+            transform: translateY(-5px);
+        }
+
         .image-wrapper::before {
-            content: "";
+            content: '';
             position: absolute;
-            inset: -10px;
-            border-radius: 22px;
+            inset: -4px;
             background: linear-gradient(
                 135deg,
-                rgba(255,140,0,0.9),
-                rgba(255,180,80,0.85),
-                rgba(255,100,40,0.9)
+                var(--primary-orange),
+                var(--secondary-orange),
+                var(--primary-orange)
             );
-            filter: blur(28px);
-            opacity: 0;
-            transition: opacity 0.4s ease;
+            border-radius: 10px;
             z-index: -1;
+            animation: rotateGlow 4s linear infinite;
+            background-size: 300% 300%;
+            transition: all 0.4s ease;
         }
 
-        /* show glow on hover */
         .image-wrapper:hover::before {
-            opacity: 1;
+            inset: -6px;
+            filter: blur(30px);
         }
 
-        /* image itself */
+        @keyframes rotateGlow {
+            0% {
+                background-position: 0% 50%;
+                filter: blur(20px);
+            }
+            50% {
+                background-position: 100% 50%;
+                filter: blur(25px);
+            }
+            100% {
+                background-position: 0% 50%;
+                filter: blur(20px);
+            }
+        }
+
+        /* ↓ border-radius fixed */
         .profile-image {
-            width: 520px;          /* ⬅️ slightly smaller */
-            max-width: 100%;
-            height: auto;
-            border-radius: 18px;
             display: block;
-            object-fit: cover;
+            width: 100%;
+            height: auto;
+            max-height: calc(100vh - 280px);
+            border-radius: 10px; /* changed */
             position: relative;
-            z-index: 2;
-            transition: transform 0.4s ease;
-        }
-
-        /* subtle lift on hover */
-        .image-wrapper:hover .profile-image {
-            transform: scale(1.03);
-        }
-
-        /* ===============================
-        OPTIONAL DECORATIVE ORBS
-        ================================ */
-
-        .glow-orb {
-            position: absolute;
-            width: 120px;
-            height: 120px;
-            background: rgba(255,140,0,0.35);
-            filter: blur(80px);
-            border-radius: 50%;
             z-index: 1;
-            opacity: 0;
-            transition: opacity 0.4s ease;
+            object-fit: cover;
+            transition: all 0.4s ease;
         }
 
-        .image-wrapper:hover ~ .glow-orb,
-        .image-wrapper:hover + .glow-orb {
-            opacity: 1;
+        .image-wrapper:hover .profile-image {
+            transform: scale(1.02);
         }
 
-        .orb-1 {
-            top: -25px;
-            left: -25px;
+        /* Placeholder when no image */
+        .image-placeholder {
+            width: 100%;
+            height: calc(100vh - 280px);
+            background: linear-gradient(
+                135deg,
+                #1a1a1a 0%,
+                var(--bg-card) 100%
+            );
+            border-radius: 10px; /* changed */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+            position: relative;
+            z-index: 1;
+            transition: all 0.4s ease;
         }
 
-        .orb-2 {
-            bottom: -30px;
-            right: -30px;
+        .image-wrapper:hover .image-placeholder {
+            transform: scale(1.02);
         }
 
-        /* ===============================
-        MOBILE – NO HOVER EFFECT
-        ================================ */
-
-        @media (max-width: 768px) {
-            .image-section {
-                margin-left: -1px;
-                    }
-            .image-wrapper::before {
-                display: none;
-            }
-
-            .profile-image {
-                width: 100%;
-            }
-
-            .glow-orb {
-                display: none;
-            }
+        .placeholder-icon {
+            width: 80px;
+            height: 80px;
+            background: rgba(255, 140, 0, 0.1);
+            border: 2px solid rgba(255, 140, 0, 0.3);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
-
-
-
-        
+        .placeholder-text {
+            color: var(--text-dim);
+            font-size: 0.95rem;
+            text-align: center;
+        }
 
         /* Decorative elements */
         .glow-orb {

@@ -3,12 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Arpit Portfolio</title>
+    <title>Document</title>
     <link rel="stylesheet" href="css/homePage.css">
 </head>
 <body>
-    
- <!-- Navigation Bar -->
+    <!-- Particle Canvas - Fixed Background for All Sections -->
+    <canvas id="particleCanvas"></canvas>
+
+    <!-- Navigation Bar -->
     <nav>
         <div class="logo">DigitalPro</div>
         
@@ -27,9 +29,8 @@
         </div>
     </nav>
 
+    <!-- Hero Section -->
     <div class="hero-container">
-        <canvas id="particleCanvas"></canvas>
-        
         <div class="hero-content">
             <div class="hero-text">
                 <h1>
@@ -68,13 +69,34 @@
                     <div class="image-wrapper">
                         <!-- Replace the src with your actual image URL -->
                         <img src="images/profile.WEBP" alt="Profile" class="profile-image">
-                        
                     </div>
                 </div>
             </div>
         </div>
     </div>
 
-<script src="js/homePage.js"></script>
+    <!-- ============================================ -->
+    <!-- YOU CAN ADD MORE SECTIONS FROM HERE -->
+    <!-- The particle background will appear on all sections -->
+    <!-- ============================================ -->
+    
+    <div class="additional-sections">
+        <div class="section-placeholder">
+            <div class="placeholder-box">
+                <h2>📍 Add Your Sections Here</h2>
+                <p>Portfolio • Services • Testimonials • Contact • Any Custom Section</p>
+                <p style="margin-top: 1rem; font-size: 0.95rem; opacity: 0.8;">
+                    The animated particle background will automatically appear behind all your content
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- ============================================ -->
+    <!-- END OF ADDITIONAL SECTIONS -->
+    <!-- ============================================ -->
+
+
+    <script src="js/homePage.js"></script>
 </body>
 </html>

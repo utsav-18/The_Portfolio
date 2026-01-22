@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="css/homePage.css">
+    <link rel="stylesheet" href="css/certificate_section.css">
+
 </head>
 <body>
     <!-- Particle Canvas - Fixed Background for All Sections -->
@@ -16,6 +18,7 @@
         
         <ul class="nav-links" id="navLinks">
             <li><a href="#home">Home</a></li>
+            <li><a href="#certificates">Certificates</a></li>
             <li><a href="#portfolio">Portfolio</a></li>
             <li><a href="#services">Services</a></li>
             <li><a href="#about">About</a></li>
@@ -30,7 +33,7 @@
     </nav>
 
     <!-- Hero Section -->
-    <div class="hero-container">
+    <div class="hero-container" id="home">
         <div class="hero-content">
             <div class="hero-text">
                 <h1>
@@ -80,17 +83,42 @@
     <!-- The particle background will appear on all sections -->
     <!-- ============================================ -->
     
-    <div class="additional-sections">
-        <div class="section-placeholder">
-            <div class="placeholder-box">
-                <h2>📍 Add Your Sections Here</h2>
-                <p>Portfolio • Services • Testimonials • Contact • Any Custom Section</p>
-                <p style="margin-top: 1rem; font-size: 0.95rem; opacity: 0.8;">
-                    The animated particle background will automatically appear behind all your content
-                </p>
+
+    <!-- CERTIFICATES SECTION -->
+    <section class="cert-section" id="certificates">
+        <h2 class="cert-title">
+            <span>My</span> Certifications
+        </h2>
+
+        <div class="cert-showcase">
+
+            <div class="cert-item tilt-left">
+                <img src="images/c1.png" alt="Certificate">
+                <div class="cert-info">
+                    <h3>Orientation Session for IMT Ghaziabad Digital Marketing</h3>
+                    <span>SIMPLI LEARN · 2022</span>
+                </div>
             </div>
+
+            <div class="cert-item tilt-none">
+                <img src="images/c2.png" alt="Certificate">
+                <div class="cert-info">
+                    <h3>"3 MONTHS" OF "PAID ADS"</h3>
+                    <span>WSCUBE TECH · 2024</span>
+                </div>
+            </div>
+
+            <div class="cert-item tilt-right">
+                <img src="images/c3.png" alt="Certificate">
+                <div class="cert-info">
+                    <h3>Advanced Digital Marketing</h3>
+                    <span>SAFALTA.COM · 2023</span>
+                </div>
+            </div>
+
         </div>
-    </div>
+    </section>
+
 
     <!-- ============================================ -->
     <!-- END OF ADDITIONAL SECTIONS -->
@@ -98,5 +126,7 @@
 
 
     <script src="js/homePage.js"></script>
+    <script src="js/certificate_section.js"></script>
+
 </body>
 </html>

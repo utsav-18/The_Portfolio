@@ -147,23 +147,44 @@
         resizeCanvas();
         animate();
 
-        // Mobile menu toggle
+            // Mobile menu toggle
         const menuToggle = document.getElementById('menuToggle');
         const navLinks = document.getElementById('navLinks');
+        const navHeight = document.querySelector('nav').offsetHeight;
 
         menuToggle.addEventListener('click', () => {
             menuToggle.classList.toggle('active');
             navLinks.classList.toggle('active');
         });
 
+        // Smooth scroll with fixed navbar offset
         document.querySelectorAll('.nav-links a').forEach(link => {
-            link.addEventListener('click', () => {
+            link.addEventListener('click', e => {
+                e.preventDefault();
+
+                const targetId = link.getAttribute('href');
+                const targetSection = document.querySelector(targetId);
+
+                if (targetSection) {
+                    const targetPosition =
+                        targetSection.getBoundingClientRect().top +
+                        window.pageYOffset -
+                        navHeight;
+
+                    window.scrollTo({
+                        top: targetPosition,
+                        behavior: 'smooth'
+                    });
+                }
+
+                // close mobile menu
                 menuToggle.classList.remove('active');
                 navLinks.classList.remove('active');
             });
         });
 
-        document.addEventListener('click', (e) => {
+        // Close menu when clicking outside
+        document.addEventListener('click', e => {
             if (!navLinks.contains(e.target) && !menuToggle.contains(e.target)) {
                 menuToggle.classList.remove('active');
                 navLinks.classList.remove('active');

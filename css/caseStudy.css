@@ -1,0 +1,231 @@
+/* =========================
+   THEME VARIABLES
+========================= */
+
+:root {
+  --bg-black: #0a0a0a;
+  --surface-black: #141414;
+  --text-white: #ffffff;
+  --text-muted: #9ca3af;
+  --accent-orange: #ff8c00;
+  --accent-orange-glow: rgba(255,140,0,0.35);
+  --success-green: #22c55e;
+
+  --radius-lg: 22px;
+  --shadow-soft: 0 30px 80px rgba(0,0,0,0.7);
+  --ease-smooth: cubic-bezier(.22,1,.36,1);
+}
+
+/* =========================
+   SECTION
+========================= */
+
+.case-studies {
+  max-width: 1200px;
+  margin: auto;
+  padding: clamp(4rem, 8vw, 7rem) 1.5rem;
+  color: var(--text-white);
+}
+
+/* =========================
+   HEADER
+========================= */
+
+.cs-header {
+  text-align: center;
+  max-width: 720px;
+  margin: 0 auto 6rem;
+}
+
+.cs-eyebrow {
+  font-size: 0.75rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--accent-orange);
+}
+
+.cs-title {
+  font-size: clamp(2.4rem, 5vw, 3.6rem);
+  margin: 0.8rem 0 1rem;
+  font-weight: 700;
+}
+
+.cs-subtitle {
+  color: var(--text-muted);
+}
+
+/* =========================
+   CASE LAYOUT
+========================= */
+
+.case {
+  display: grid;
+  gap: 4rem;
+  align-items: center;
+  margin-bottom: 7rem;
+}
+
+@media (min-width: 900px) {
+  .case {
+    grid-template-columns: 1.1fr 1fr;
+  }
+}
+
+/* =========================
+   MEDIA
+========================= */
+
+.case-media {
+  background: var(--surface-black);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-soft);
+  transition: transform 0.6s var(--ease-smooth),
+              box-shadow 0.6s var(--ease-smooth);
+}
+
+.case-media img {
+  width: 100%;
+  display: block;
+}
+
+.case-media:hover {
+  transform: translateY(-10px);
+  box-shadow:
+    var(--shadow-soft),
+    0 0 40px var(--accent-orange-glow);
+}
+
+/* =========================
+   CONTENT
+========================= */
+
+.case-content {
+  position: relative;
+  padding-left: 2.5rem;
+}
+
+.case-content::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: linear-gradient(
+    to bottom,
+    transparent,
+    var(--accent-orange),
+    transparent
+  );
+}
+
+.case-industry {
+  font-size: 0.7rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--accent-orange);
+}
+
+.case-heading {
+  font-size: clamp(1.8rem, 4vw, 2.4rem);
+  margin: 0.8rem 0 1.2rem;
+}
+
+.case-meta {
+  color: var(--text-muted);
+  margin-bottom: 1.8rem;
+}
+
+.case-block {
+  margin-bottom: 1.4rem;
+  color: var(--text-muted);
+}
+
+.case-label {
+  display: block;
+  font-size: 0.7rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--accent-orange);
+  margin-bottom: 0.25rem;
+}
+
+.case-result p {
+  color: var(--text-white);
+  font-size: 1.1rem;
+}
+
+.case-result strong {
+  color: var(--success-green);
+  font-size: 1.35rem;
+}
+.cs-title {
+  font-size: clamp(2.4rem, 5vw, 3.6rem);
+  font-weight: 700;
+  color: #ffffff; /* default white */
+  line-height: 1.2;
+}
+
+.cs-title-accent {
+  color: #ff8c00; /* your brand orange */
+}
+.case-brand-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+
+  padding: 8px 14px;
+  border-radius: 999px;
+
+  background: rgba(255, 140, 0, 0.08); /* subtle orange tint */
+  border: 1px solid rgba(255, 140, 0, 0.25);
+
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+
+  margin-bottom: 14px;
+}
+
+.case-brand-logo {
+  width: 26px;
+  height: 26px;
+  object-fit: contain;
+}
+
+.case-brand-text {
+  font-size: 0.75rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: #ff8c00;
+  white-space: nowrap;
+}
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 899px) {
+  .case-content {
+    padding-left: 0;
+  }
+
+  .case-content::before {
+    display: none;
+  }
+}
+
+/* =========================
+   SCROLL REVEAL
+========================= */
+
+.reveal {
+  opacity: 0;
+  transform: translateY(50px);
+  transition: 1s var(--ease-smooth);
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}

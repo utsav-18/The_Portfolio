@@ -572,3 +572,109 @@
                 justify-content: center;
             }
         }
+
+
+        /* reussable buttons */
+    /* ================= PREMIUM CTA BUTTON ================= */
+.cta-button-wrap {
+    display: flex;
+    justify-content: center;
+    margin-top: 40px;
+}
+
+/* Button base */
+.cta-glow-btn {
+    position: relative;
+    padding: 16px 42px;
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: #fff;
+    background: linear-gradient(135deg, #ff8c00, #ff4500);
+    border: none;
+    border-radius: 999px;
+    cursor: pointer;
+    overflow: hidden;
+    box-shadow:
+        0 10px 30px rgba(255,140,0,0.35),
+        inset 0 -2px 0 rgba(0,0,0,0.25);
+    transition:
+        transform 0.35s ease,
+        box-shadow 0.35s ease;
+}
+
+/* Hover lift */
+.cta-glow-btn:hover {
+    transform: translateY(-4px);
+    box-shadow:
+        0 18px 50px rgba(255,140,0,0.55),
+        0 0 0 6px rgba(255,140,0,0.12);
+}
+
+/* Active click */
+.cta-glow-btn:active {
+    transform: translateY(0);
+}
+
+/* Text layer */
+.cta-text {
+    position: relative;
+    z-index: 2;
+    letter-spacing: 0.3px;
+}
+
+/* Shine sweep */
+.cta-shine {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+        120deg,
+        transparent 0%,
+        rgba(255,255,255,0.35) 45%,
+        transparent 70%
+    );
+    transform: translateX(-120%);
+    transition: transform 0.7s ease;
+}
+
+.cta-glow-btn:hover .cta-shine {
+    transform: translateX(120%);
+}
+/* Alternate layout for even case studies (desktop only) */
+@media (min-width: 900px) {
+  .case:nth-child(even) {
+    grid-template-columns: 1fr 1.1fr;
+  }
+
+  .case:nth-child(even) .case-media {
+    order: 2; /* image on right */
+  }
+
+  .case:nth-child(even) .case-content {
+    order: 1; /* content on left */
+    padding-left: 0;
+    padding-right: 2.5rem;
+  }
+
+  /* Move accent line to the right for even cases */
+  .case:nth-child(even) .case-content::before {
+    left: auto;
+    right: 0;
+  }
+}
+
+/* Dark background contrast */
+body.dark .cta-glow-btn {
+    box-shadow:
+        0 14px 40px rgba(255,140,0,0.45),
+        inset 0 -2px 0 rgba(0,0,0,0.3);
+}
+
+/* ================= MOBILE ================= */
+
+@media (max-width: 768px) {
+    .cta-glow-btn {
+        width: 90%;
+        max-width: 320px;
+        padding: 16px 0;
+    }
+}

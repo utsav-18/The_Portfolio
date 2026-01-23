@@ -1,0 +1,189 @@
+
+/* ===============================
+   LOGO TRAIN SECTION
+================================ */
+
+.logo-train-section {
+    padding: 120px 20px;
+    text-align: center;
+    position: relative;
+}
+
+/* Title */
+.logo-train-title {
+    font-size: 2rem;
+    margin-bottom: 60px;
+    background: linear-gradient(135deg, #ff8c00, #ffb347);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+/* visible window */
+.logo-train-wrapper {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+}
+
+/* soft edge fade (premium look) */
+.logo-train-wrapper::before,
+.logo-train-wrapper::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    width: 120px;
+    height: 100%;
+    z-index: 5;
+    pointer-events: none;
+}
+
+.logo-train-wrapper::before {
+    left: 0;
+    background: linear-gradient(to right, #000, transparent);
+}
+
+.logo-train-wrapper::after {
+    right: 0;
+    background: linear-gradient(to left, #000, transparent);
+}
+
+/* moving track */
+.logo-train-track {
+    display: flex;
+    gap: 40px;
+    width: max-content;
+
+    animation: trainMove 28s linear infinite;
+    will-change: transform;
+}
+
+/* pause on hover */
+.logo-train-wrapper:hover .logo-train-track {
+    animation-play-state: paused;
+}
+
+/* seamless motion */
+@keyframes trainMove {
+    from { transform: translateX(0); }
+    to   { transform: translateX(-50%); }
+}
+
+/* ===============================
+   LOGO CARD
+================================ */
+
+.logo-train-cell {
+    position: relative;
+    overflow: hidden;
+
+    min-width: 180px;
+    height: 120px;
+    border-radius: 16px;
+
+    background: rgba(15, 15, 20, 0.9);
+    border: 1px solid rgba(255, 140, 0, 0.25);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(6px);
+
+    transition: transform 0.35s ease, box-shadow 0.35s ease;
+}
+
+/* always-on glow */
+.logo-train-cell::before {
+    content: "";
+    position: absolute;
+    inset: -40%;
+    background: radial-gradient(
+        circle,
+        rgba(255, 140, 0, 0.35),
+        transparent 60%
+    );
+    opacity: 0.55;
+    z-index: 0;
+    animation: softPulse 4s ease-in-out infinite;
+}
+
+/* glow pulse */
+@keyframes softPulse {
+    0%, 100% { opacity: 0.45; }
+    50% { opacity: 0.75; }
+}
+
+/* logo image */
+.logo-train-cell img {
+    width: 90px;
+    z-index: 1;
+
+    background: transparent;
+    filter: none;
+    opacity: 1;
+
+    transition: transform 0.35s ease;
+}
+
+/* hover enhancement */
+.logo-train-cell:hover {
+    transform: translateY(-6px) scale(1.06);
+    box-shadow: 0 0 65px rgba(255, 140, 0, 0.6);
+}
+
+.logo-train-cell:hover::before {
+    opacity: 1;
+}
+
+.logo-train-cell:hover img {
+    transform: scale(1.12);
+}
+/* logo inner box – forces equal visual size */
+.logo-inner {
+    width: 70px;
+    height: 70px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: transparent;
+}
+
+/* actual image */
+.logo-inner img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;   /* KEY LINE */
+}
+
+@media (max-width: 768px) {
+  .logo-inner {
+    width: 55px;
+    height: 55px;
+  }
+}
+/* ===============================
+   MOBILE
+================================ */
+
+@media (max-width: 768px) {
+    .logo-train-track {
+        animation-duration: 22s;
+    }
+
+    .logo-train-cell {
+        min-width: 150px;
+        height: 100px;
+    }
+
+    .logo-train-cell img {
+        width: 70px;
+    }
+
+    .logo-train-wrapper::before,
+    .logo-train-wrapper::after {
+        width: 60px;
+    }
+}

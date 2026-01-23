@@ -1,0 +1,402 @@
+/* ================= ROADMAP SECTION ================= */
+
+.roadmap-section {
+    max-width: 1400px;
+    margin: auto;
+    padding: 120px 20px;
+    position: relative;
+}
+
+/* ================= HEADER ================= */
+
+.roadmap-header {
+    text-align: center;
+    margin-bottom: 100px;
+}
+
+.roadmap-header h2 {
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 800;
+    background: linear-gradient(135deg, #ff8c00, #ff4500);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.roadmap-header p {
+    color: #9ca3af;
+    max-width: 680px;
+    margin: 16px auto 0;
+    font-size: 1.1rem;
+}
+
+/* ================= CONTAINER ================= */
+
+.roadmap-container {
+    position: relative;
+}
+
+.timeline-line {
+    position: absolute;
+    left: 50%;
+    top: 0;
+    bottom: 0;
+    width: 3px;
+    background: rgba(233, 232, 232, 0.15);
+    transform: translateX(-50%);
+}
+
+/* ================= STEP ================= */
+
+.step-container {
+    position: relative;
+    display: flex;
+    min-height: 240px;
+    align-items: center;
+    overflow: visible;
+}
+
+.step-container:nth-child(odd) {
+    justify-content: flex-start;
+}
+
+.step-container:nth-child(even) {
+    justify-content: flex-end;
+}
+
+/* ================= CARD ================= */
+
+.step-card {
+    width: 44%;
+    max-width: 520px;
+    background: rgba(15,15,20,0.92);
+    border-radius: 22px;
+    padding: 40px;
+    border: 1px solid rgba(250, 174, 34, 0.08);
+    box-shadow: 0 20px 60px rgba(0,0,0,0.6);
+    opacity: 0;
+    transform: translateY(40px);
+    transition: all 0.7s ease;
+}
+
+.step-card.visible {
+    opacity: 2;
+    transform: translateY(0);
+}
+
+.step-card:hover {
+    transform: translateY(-10px);
+    box-shadow:
+        0 0 0 1px rgba(255,140,0,0.6),
+        0 30px 90px rgba(255,140,0,0.35);
+}
+
+/* ================= PIN ================= */
+/* ================= PIN ================= */
+
+.step-number-badge {
+    position: absolute;
+    left: 50%;
+    top: 0;
+    transform: translateX(-50%) scale(0);
+    transition: transform 0.6s ease;
+    z-index: 5;
+}
+
+.step-number-badge.visible {
+    transform: translateX(-50%) scale(1);
+}
+
+/* Pin body */
+.location-pin {
+    position: relative;
+    width: 56px;
+    height: 56px;
+    background: linear-gradient(135deg,#ff8c00,#ff4500);
+    border-radius: 50% 50% 50% 0;
+
+    /* 🔥 REQUIRED */
+    transform: rotate(-45deg);
+
+    box-shadow:
+        0 0 0 4px rgba(255,140,0,0.15),
+        0 12px 35px rgba(255,140,0,0.6);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Step number */
+.step-number-text {
+    transform: rotate(45deg); /* counter-rotation */
+    font-weight: 800;
+    color: #fff;
+}
+
+
+
+/* ================= CONNECTOR ================= */
+/* ================= CONNECTOR LAYER ================= */
+
+.roadmap-connectors {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    z-index: 2;
+}
+
+.roadmap-connectors svg {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.connector-path {
+    stroke: rgba(255,255,255,0.9);
+    stroke-width: 2.4;
+    fill: none;
+    stroke-dasharray: 6 10;
+    stroke-linecap: round;
+    stroke-dashoffset: 300;
+    opacity: 0;
+    transition:
+        stroke-dashoffset 0.9s ease,
+        opacity 0.4s ease;
+}
+
+.connector-path.animate {
+    stroke-dashoffset: 0;
+    opacity: 1;
+    filter: drop-shadow(0 0 6px rgba(255,140,0,0.45));
+}
+
+/* ================= CONTENT ================= */
+
+.step-icon {
+    font-size: 2.2rem;
+    margin-bottom: 20px;
+}
+
+.step-title {
+    font-size: 1.6rem;
+    color: #fff;
+    margin-bottom: 12px;
+}
+
+.step-description {
+    color: #9ca3af;
+    line-height: 1.7;
+}
+
+.step-tag {
+    display: inline-block;
+    margin-top: 18px;
+    padding: 6px 14px;
+    font-size: 0.8rem;
+    border-radius: 20px;
+    background: linear-gradient(135deg,#ff8c00,#ff4500);
+    color: white;
+    box-shadow: 0 6px 20px rgba(255,140,0,0.35);
+}
+
+/* ================= MOBILE ================= */
+
+@media (max-width: 900px) {
+    .timeline-line {
+        left: 28px;
+    }
+
+    .step-container {
+        justify-content: flex-start !important;
+        padding-left: 80px;
+    }
+
+    .step-card {
+        width: 100%;
+    }
+
+    .connector {
+        display: none;
+    }
+}
+/* ================= ENTRY ANIMATIONS ================= */
+
+/* Card entry */
+.step-card {
+    opacity: 0;
+    transform: translateY(40px);
+    transition:
+        opacity 0.9s ease,
+        transform 0.9s ease,
+        box-shadow 0.4s ease,
+        border 0.4s ease;
+}
+
+/* Visible card */
+.step-card.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Pin entry */
+.step-number-badge {
+    opacity: 0;
+    transform: translateX(-50%) scale(0.6);
+    transition:
+        opacity 0.7s ease,
+        transform 0.7s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.step-number-badge.visible {
+    opacity: 1;
+    transform: translateX(-50%) scale(1);
+}
+
+/* Connector draw timing (slower + elegant) */
+.connector-path {
+    transition:
+        stroke-dashoffset 1.4s ease,
+        opacity 0.5s ease;
+}
+
+/* ================= PREMIUM HOVER GLOW ================= */
+
+/* ================= PIN GLOW ================= */
+
+.location-pin {
+    animation: none;
+}
+
+.step-number-badge.visible .location-pin {
+    animation: pinPulse 2.5s ease-in-out infinite;
+}
+
+@keyframes pinPulse {
+    0%   { box-shadow: 0 0 0 4px rgba(255,140,0,0.15), 0 12px 35px rgba(255,140,0,0.5); }
+    50%  { box-shadow: 0 0 0 6px rgba(255,140,0,0.25), 0 16px 45px rgba(255,140,0,0.7); }
+    100% { box-shadow: 0 0 0 4px rgba(255,140,0,0.15), 0 12px 35px rgba(255,140,0,0.5); }
+}
+
+
+/* ================= MOBILE ROADMAP FIX ================= */
+@media (max-width: 768px) {
+
+    /* Section spacing */
+    .roadmap-section {
+        padding: 80px 16px;
+    }
+
+    /* Header */
+    .roadmap-header h2 {
+        font-size: 2rem;
+    }
+
+    .roadmap-header p {
+        font-size: 1rem;
+    }
+
+    /* Timeline moves left */
+    .timeline-line {
+        left: 24px;
+        width: 2px;
+    }
+
+    /* Stack everything vertically */
+    .step-container {
+        justify-content: flex-start !important;
+        padding-left: 60px;
+        min-height: auto;
+        margin-bottom: 70px;
+    }
+
+    /* Cards full width */
+    .step-card {
+        width: 100%;
+        max-width: 100%;
+        padding: 28px;
+        border-radius: 18px;
+    }
+
+    /* Pin positioning */
+    .step-number-badge {
+        left: 24px;
+        top: 10px;
+        transform: translateX(-50%) scale(1);
+    }
+
+    /* Pin size smaller */
+    .location-pin {
+        width: 44px;
+        height: 44px;
+    }
+
+    .step-number-text {
+        font-size: 0.9rem;
+    }
+
+    /* REMOVE desktop zig-zag connectors */
+    .connector {
+        display: none;
+    }
+
+    /* Add clean vertical dotted line between steps */
+    .step-container::after {
+        content: "";
+        position: absolute;
+        left: 24px;
+        top: 56px;
+        height: calc(100% + 30px);
+        width: 2px;
+        border-left: 2px dashed rgba(255,255,255,0.35);
+    }
+
+    /* Remove last vertical line */
+    .step-container:last-child::after {
+        display: none;
+    }
+
+    /* Content spacing */
+    .step-title {
+        font-size: 1.35rem;
+    }
+
+    .step-description {
+        font-size: 0.95rem;
+    }
+
+    .step-tag {
+        font-size: 0.75rem;
+        padding: 6px 12px;
+    }
+}
+/* ================= CENTER CARD CONTENT ================= */
+
+.step-card {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Icon */
+.step-icon {
+    margin-bottom: 16px;
+}
+
+/* Title */
+.step-title {
+    text-align: center;
+    width: 100%;
+}
+
+/* Description */
+.step-description {
+    text-align: center;
+    max-width: 90%;
+}
+
+/* Tag button */
+.step-tag {
+    margin-top: 20px;
+}

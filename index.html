@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="css/homePage.css">
+    <link rel="stylesheet" href="css/roadMap.css">
+    <link rel="stylesheet" href="css/logoSection.css">
 </head>
 <body>
     <!-- Particle Canvas - Fixed Background for All Sections -->
@@ -79,18 +81,112 @@
     <!-- YOU CAN ADD MORE SECTIONS FROM HERE -->
     <!-- The particle background will appear on all sections -->
     <!-- ============================================ -->
-    
-    <div class="additional-sections">
-        <div class="section-placeholder">
-            <div class="placeholder-box">
-                <h2>📍 Add Your Sections Here</h2>
-                <p>Portfolio • Services • Testimonials • Contact • Any Custom Section</p>
-                <p style="margin-top: 1rem; font-size: 0.95rem; opacity: 0.8;">
-                    The animated particle background will automatically appear behind all your content
-                </p>
-            </div>
+
+ <!-- Logo Section starts from here -->
+<section class="logo-train-section">
+  <h2 class="logo-train-title">Platforms I Work With</h2>
+
+  <div class="logo-train-wrapper">
+    <div class="logo-train-track" id="logoTrainTrack">
+
+      <!-- FIRST SET -->
+      <div class="logo-train-cell">
+        <div class="logo-inner">
+          <img src="images/googleads.jpg" alt="Google">
         </div>
+      </div>
+
+      <div class="logo-train-cell">
+        <div class="logo-inner">
+          <img src="images/meta_tags_image.jpg" alt="Meta">
+        </div>
+      </div>
+
+      <div class="logo-train-cell">
+        <div class="logo-inner">
+          <img src="images/GoogleImg.jpg" alt="Google Ads">
+        </div>
+      </div>
+
+      <div class="logo-train-cell">
+        <div class="logo-inner">
+          <img src="images/utube_img.jpg" alt="YouTube">
+        </div>
+      </div>
+
+      <div class="logo-train-cell">
+        <div class="logo-inner">
+          <img src="images/facebook_img.jpg" alt="Facebook">
+        </div>
+      </div>
+
+      <div class="logo-train-cell">
+        <div class="logo-inner">
+          <img src="images/linkedin_img.jpg" alt="LinkedIn">
+        </div>
+      </div>
+
+      <!-- SECOND SET (DUPLICATE – REQUIRED) -->
+      <div class="logo-train-cell">
+        <div class="logo-inner">
+          <img src="images/googleads.jpg" alt="">
+        </div>
+      </div>
+
+      <div class="logo-train-cell">
+        <div class="logo-inner">
+          <img src="images/meta_tags_image.jpg" alt="">
+        </div>
+      </div>
+
+      <div class="logo-train-cell">
+        <div class="logo-inner">
+          <img src="images/GoogleImg.jpg" alt="">
+        </div>
+      </div>
+
+      <div class="logo-train-cell">
+        <div class="logo-inner">
+          <img src="images/utube_img.jpg" alt="">
+        </div>
+      </div>
+
+      <div class="logo-train-cell">
+        <div class="logo-inner">
+          <img src="images/facebook_img.jpg" alt="">
+        </div>
+      </div>
+
+      <div class="logo-train-cell">
+        <div class="logo-inner">
+          <img src="images/linkedin_img.jpg" alt="">
+        </div>
+      </div>
+
     </div>
+  </div>
+</section>
+
+
+         <!-- roadmap -->
+    <section class="roadmap-section" id="roadmap-section">
+
+            <div class="roadmap-header">
+                <h2>Your Journey to Success</h2>
+                <p>Follow our proven step-by-step process designed to transform your vision into reality</p>
+            </div>
+
+            <div class="roadmap-container" id="roadmap">
+                <div class="timeline-line"></div>
+
+                <div class="roadmap-connectors">
+                <svg id="roadmap-svg"></svg>
+                </div>
+                <!-- Steps injected by JS -->
+            </div>
+    </section>
+
+
 
     <!-- ============================================ -->
     <!-- END OF ADDITIONAL SECTIONS -->
@@ -98,5 +194,7 @@
 
 
     <script src="js/homePage.js"></script>
+    <script src="js/roadMap.js"></script>
+    <script src="js/logoSection.js"></script>
 </body>
 </html>

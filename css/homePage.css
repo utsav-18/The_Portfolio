@@ -22,7 +22,9 @@
             background: var(--bg-dark);
             color: var(--text-main);
         }
-
+        html {
+            scroll-behavior: smooth;
+        }
         /* Navigation Bar */
         nav {
             position: fixed;

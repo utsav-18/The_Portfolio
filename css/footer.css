@@ -1,0 +1,159 @@
+/* =========================
+   NEO FOOTER
+========================= */
+
+.neo-footer {
+    position: relative;
+    background: radial-gradient(
+        circle at top,
+        rgba(255,140,0,0.12),
+        rgba(5,5,5,0.98)
+    );
+    border-top: 1px solid rgba(255,255,255,0.08);
+    overflow: hidden;
+    margin-top: 120px;
+}
+
+/* Animated glow line */
+.footer-glow-line {
+    height: 3px;
+    width: 100%;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        var(--primary-orange),
+        var(--secondary-orange),
+        transparent
+    );
+    animation: glowSlide 6s linear infinite;
+}
+
+@keyframes glowSlide {
+    0% { background-position: 0% }
+    100% { background-position: 200% }
+}
+
+/* Layout */
+.neo-footer-inner {
+    max-width: 1200px;
+    margin: auto;
+    padding: 80px 8%;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 60px;
+    position: relative;
+    z-index: 2;
+}
+
+/* Brand */
+.neo-footer-brand h3 {
+    font-size: 2rem;
+    color: #fff;
+    margin-bottom: 12px;
+}
+
+.neo-footer-brand p {
+    color: var(--text-dim);
+    font-size: 0.95rem;
+    line-height: 1.7;
+}
+
+/* CTA */
+.neo-footer-cta {
+    text-align: center;
+}
+
+.cta-badge {
+    display: inline-block;
+    padding: 6px 14px;
+    font-size: 0.75rem;
+    border-radius: 999px;
+    background: rgba(255,140,0,0.15);
+    color: var(--primary-orange);
+    margin-bottom: 14px;
+}
+
+.neo-footer-cta h4 {
+    color: #fff;
+    font-size: 1.5rem;
+    margin-bottom: 18px;
+}
+
+.footer-cta-btn {
+    position: relative;
+    display: inline-block;
+    padding: 14px 34px;
+    border-radius: 999px;
+    color: #fff;
+    font-weight: 600;
+    text-decoration: none;
+    background: linear-gradient(135deg, var(--primary-orange), var(--secondary-orange));
+    overflow: hidden;
+}
+
+.footer-cta-btn .cta-glow {
+    position: absolute;
+    inset: -40%;
+    background: radial-gradient(circle, rgba(255,255,255,0.6), transparent 60%);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.footer-cta-btn:hover .cta-glow {
+    opacity: 1;
+}
+
+/* Links */
+.neo-footer-links h4 {
+    color: #fff;
+    margin-bottom: 14px;
+}
+
+.neo-footer-links ul {
+    list-style: none;
+    padding: 0;
+}
+
+.neo-footer-links li {
+    margin-bottom: 10px;
+}
+
+.neo-footer-links a {
+    color: var(--text-dim);
+    text-decoration: none;
+    transition: color 0.3s ease, text-shadow 0.3s ease;
+}
+
+.neo-footer-links a:hover {
+    color: var(--primary-orange);
+    text-shadow: 0 0 8px rgba(255,140,0,0.6);
+}
+
+/* Bottom */
+.neo-footer-bottom {
+    border-top: 1px solid rgba(255,255,255,0.06);
+    padding: 18px 8%;
+    text-align: center;
+    position: relative;
+    z-index: 2;
+}
+
+.neo-footer-bottom p {
+    color: var(--text-dim);
+    font-size: 0.9rem;
+}
+
+/* Footer particles canvas */
+#footerParticles {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    pointer-events: none;
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+    .neo-footer-inner {
+        text-align: center;
+    }
+}

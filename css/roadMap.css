@@ -68,10 +68,10 @@
 .step-card {
     width: 44%;
     max-width: 520px;
-    background: rgba(15,15,20,0.92);
+    background: rgba(0, 0, 0, 0.823);
     border-radius: 22px;
     padding: 40px;
-    border: 1px solid rgba(250, 174, 34, 0.08);
+    border: 1px solid rgba(255, 166, 0, 0.584);
     box-shadow: 0 20px 60px rgba(0,0,0,0.6);
     opacity: 0;
     transform: translateY(40px);

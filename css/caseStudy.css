@@ -1,7 +1,3 @@
-/* =========================
-   THEME VARIABLES
-========================= */
-
 :root {
   --bg-black: #0a0a0a;
   --surface-black: #141414;
@@ -10,16 +6,12 @@
   --accent-orange: #ff8c00;
   --accent-orange-glow: rgba(255,140,0,0.35);
   --success-green: #22c55e;
-
   --radius-lg: 22px;
   --shadow-soft: 0 30px 80px rgba(0,0,0,0.7);
   --ease-smooth: cubic-bezier(.22,1,.36,1);
 }
 
-/* =========================
-   SECTION
-========================= */
-
+/* SECTION */
 .case-studies {
   max-width: 1200px;
   margin: auto;
@@ -27,10 +19,7 @@
   color: var(--text-white);
 }
 
-/* =========================
-   HEADER
-========================= */
-
+/* HEADER */
 .cs-header {
   text-align: center;
   max-width: 720px;
@@ -46,42 +35,37 @@
 
 .cs-title {
   font-size: clamp(2.4rem, 5vw, 3.6rem);
-  margin: 0.8rem 0 1rem;
   font-weight: 700;
+}
+
+.cs-title-accent {
+  color: var(--accent-orange);
 }
 
 .cs-subtitle {
   color: var(--text-muted);
 }
 
-/* =========================
-   CASE LAYOUT
-========================= */
-
+/* CASE */
 .case {
   display: grid;
   gap: 4rem;
-  align-items: center;
   margin-bottom: 7rem;
 }
 
 @media (min-width: 900px) {
   .case {
     grid-template-columns: 1.1fr 1fr;
+    align-items: center;
   }
 }
 
-/* =========================
-   MEDIA
-========================= */
-
+/* MEDIA */
 .case-media {
   background: var(--surface-black);
   border-radius: var(--radius-lg);
   overflow: hidden;
   box-shadow: var(--shadow-soft);
-  transition: transform 0.6s var(--ease-smooth),
-              box-shadow 0.6s var(--ease-smooth);
 }
 
 .case-media img {
@@ -89,17 +73,7 @@
   display: block;
 }
 
-.case-media:hover {
-  transform: translateY(-10px);
-  box-shadow:
-    var(--shadow-soft),
-    0 0 40px var(--accent-orange-glow);
-}
-
-/* =========================
-   CONTENT
-========================= */
-
+/* CONTENT */
 .case-content {
   position: relative;
   padding-left: 2.5rem;
@@ -120,13 +94,48 @@
   );
 }
 
-.case-industry {
+/* BRAND BADGE */
+.case-brand-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  padding: 8px 14px;
+  border-radius: 999px;
+  background: rgba(255,140,0,0.08);
+  border: 1px solid rgba(255,140,0,0.25);
+  margin-bottom: 14px;
+}
+
+/* LOGO FIX */
+.case-brand-logo {
+  width: 32px;
+  height: 32px;
+  object-fit: contain;
+  flex-shrink: 0;
+}
+
+/* FALLBACK WHEN NO LOGO */
+.case-brand-fallback {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: var(--accent-orange);
+  color: #000;
   font-size: 0.7rem;
+  font-weight: 700;
+  display: grid;
+  place-items: center;
+}
+
+.case-brand-text {
+  font-size: 0.75rem;
   letter-spacing: 0.15em;
   text-transform: uppercase;
   color: var(--accent-orange);
+  white-space: nowrap;
 }
 
+/* TEXT */
 .case-heading {
   font-size: clamp(1.8rem, 4vw, 2.4rem);
   margin: 0.8rem 0 1.2rem;
@@ -143,12 +152,10 @@
 }
 
 .case-label {
-  display: block;
   font-size: 0.7rem;
   letter-spacing: 0.14em;
   text-transform: uppercase;
   color: var(--accent-orange);
-  margin-bottom: 0.25rem;
 }
 
 .case-result p {
@@ -160,65 +167,18 @@
   color: var(--success-green);
   font-size: 1.35rem;
 }
-.cs-title {
-  font-size: clamp(2.4rem, 5vw, 3.6rem);
-  font-weight: 700;
-  color: #ffffff; /* default white */
-  line-height: 1.2;
-}
 
-.cs-title-accent {
-  color: #ff8c00; /* your brand orange */
-}
-.case-brand-badge {
-  display: inline-flex;
-  align-items: center;
-  gap: 12px;
-
-  padding: 8px 14px;
-  border-radius: 999px;
-
-  background: rgba(255, 140, 0, 0.08); /* subtle orange tint */
-  border: 1px solid rgba(255, 140, 0, 0.25);
-
-  backdrop-filter: blur(6px);
-  -webkit-backdrop-filter: blur(6px);
-
-  margin-bottom: 14px;
-}
-
-.case-brand-logo {
-  width: 26px;
-  height: 26px;
-  object-fit: contain;
-}
-
-.case-brand-text {
-  font-size: 0.75rem;
-  letter-spacing: 0.15em;
-  text-transform: uppercase;
-  color: #ff8c00;
-  white-space: nowrap;
-}
-
-/* =========================
-   MOBILE
-========================= */
-
+/* MOBILE */
 @media (max-width: 899px) {
   .case-content {
     padding-left: 0;
   }
-
   .case-content::before {
     display: none;
   }
 }
 
-/* =========================
-   SCROLL REVEAL
-========================= */
-
+/* REVEAL */
 .reveal {
   opacity: 0;
   transform: translateY(50px);

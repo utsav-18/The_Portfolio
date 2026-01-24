@@ -225,8 +225,6 @@
 
 /* Card entry */
 .step-card {
-    opacity: 0;
-    transform: translateY(40px);
     transition:
         opacity 0.9s ease,
         transform 0.9s ease,

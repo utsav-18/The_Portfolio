@@ -1,132 +1,165 @@
+/* ================= ROADMAP DATA ================= */
 
 const roadmapSteps = [
-    {
-        icon: "📞",
-        title: "Virtual Meeting",
-        desc: "We understand your business, audience, and goals.",
-        tag: "Foundation"
-    },
-    {
-        icon: "📋",
-        title: "We Will share you a Plan",
-        desc: "A clear roadmap tailored for growth.",
-        tag: "Blueprint"
-    },
-    {
-        icon: "🎨",
-        title: "Once approved, we will move to the execution",
-        desc: "Visuals and UX crafted for conversion.",
-        tag: "Creative"
-    },
-    {
-        icon: "⚙️",
-        title: "Work will get started",
-        desc: "Clean, scalable, high-performance builds.",
-        tag: "Build"
-    },
-    {
-        icon: "🚀",
-        title: "Launch & Optimization",
-        desc: "Launch, monitor, improve, and scale.",
-        tag: "Growth"
-    }
+  {
+    icon: "📞",
+    title: "Virtual Meeting",
+    desc: "We understand your business, audience, and goals.",
+    tag: "Foundation"
+  },
+  {
+    icon: "📋",
+    title: "We Share a Custom Plan",
+    desc: "A clear roadmap tailored for growth.",
+    tag: "Blueprint"
+  },
+  {
+    icon: "🎨",
+    title: "Execution Begins",
+    desc: "Visuals and UX crafted for conversion.",
+    tag: "Creative"
+  },
+  {
+    icon: "⚙️",
+    title: "Development & Setup",
+    desc: "Clean, scalable, high-performance builds.",
+    tag: "Build"
+  },
+  {
+    icon: "🚀",
+    title: "Launch & Optimization",
+    desc: "Launch, monitor, improve, and scale.",
+    tag: "Growth"
+  }
 ];
+
+/* ================= BUILD ROADMAP ================= */
 
 const roadmap = document.getElementById("roadmap");
 
 roadmapSteps.forEach((step, i) => {
-    const div = document.createElement("div");
-    div.className = "step-container";
-    div.innerHTML = `
-        <div class="step-number-badge">
-            <div class="location-pin">
-                <span class="step-number-text">${i+1}</span>
-            </div>
-        </div>
+  const stepEl = document.createElement("div");
+  stepEl.className = "step-container";
 
-        <div class="step-card">
-            <div class="step-icon">${step.icon}</div>
-            <h3 class="step-title">${step.title}</h3>
-            <p class="step-description">${step.desc}</p>
-            <span class="step-tag">${step.tag}</span>
-        </div>
+  stepEl.innerHTML = `
+    <div class="step-number-badge">
+      <div class="location-pin">
+        <span class="step-number-text">${i + 1}</span>
+      </div>
+    </div>
 
-        ${i < roadmapSteps.length - 1 ? `
-        <div class="connector">
+    <div class="step-card">
+      <div class="step-icon">${step.icon}</div>
+      <h3 class="step-title">${step.title}</h3>
+      <p class="step-description">${step.desc}</p>
+      <span class="step-tag">${step.tag}</span>
+    </div>
+
+    ${
+      i < roadmapSteps.length - 1
+        ? `<div class="connector">
             <svg viewBox="0 0 160 100">
-                <path class="connector-path"
-                d="${i % 2 === 0
-  ? 'M140 0 V60 H280'
-  : 'M140 0 V60 H0'}"
-
+              <path class="connector-path"
+                d="${
+                  i % 2 === 0
+                    ? 'M140 0 V60 H280'
+                    : 'M140 0 V60 H0'
+                }"
+              />
             </svg>
-        </div>` : ""}
-    `;
-    roadmap.appendChild(div);
+          </div>`
+        : ""
+    }
+  `;
+
+  roadmap.appendChild(stepEl);
 });
 
-/* Intersection Observer */
+/* ================= INTERSECTION OBSERVER ================= */
 
-const observer = new IntersectionObserver(entries => {
+const roadmapObserver = new IntersectionObserver(
+  entries => {
     entries.forEach(entry => {
-        if (entry.isIntersecting) {
+      if (!entry.isIntersecting) return;
 
-            const card = entry.target.querySelector(".step-card");
-            const pin = entry.target.querySelector(".step-number-badge");
-            const connector = entry.target.querySelector(".connector-path");
+      const card = entry.target.querySelector(".step-card");
+      const pin = entry.target.querySelector(".step-number-badge");
+      const connector = entry.target.querySelector(".connector-path");
 
-            setTimeout(() => pin?.classList.add("visible"), 100);
-            setTimeout(() => card?.classList.add("visible"), 300);
-            setTimeout(() => connector?.classList.add("animate"), 600);
+      // Staggered reveal
+      pin?.classList.add("visible");
 
-            observer.unobserve(entry.target);
-        }
+      setTimeout(() => {
+        card?.classList.add("visible");
+      }, 200);
+
+      setTimeout(() => {
+        connector?.classList.add("animate");
+      }, 450);
+
+      roadmapObserver.unobserve(entry.target);
     });
-}, { threshold: 0.45 });
+  },
+  {
+    threshold: 0.35
+  }
+);
 
-document.querySelectorAll(".step-container").forEach(step => observer.observe(step));
+/* ================= START OBSERVING ================= */
+
+document.querySelectorAll(".step-container").forEach(step => {
+  roadmapObserver.observe(step);
+});
+
+/* ================= OPTIONAL: CONNECTOR REDRAW ================= */
+/* (only needed if you use dynamic SVG connectors elsewhere) */
 
 function drawRoadmapConnectors() {
-    const svg = document.getElementById("roadmap-svg");
-    svg.innerHTML = "";
+  const svg = document.getElementById("roadmap-svg");
+  if (!svg) return;
 
-    const steps = document.querySelectorAll(".step-container");
+  svg.innerHTML = "";
 
-    steps.forEach(step => {
-        const pin = step.querySelector(".step-number-badge");
-        const card = step.querySelector(".step-card");
+  const steps = document.querySelectorAll(".step-container");
 
-        if (!pin || !card) return;
+  steps.forEach(step => {
+    const pin = step.querySelector(".step-number-badge");
+    const card = step.querySelector(".step-card");
 
-        const pinRect = pin.getBoundingClientRect();
-        const cardRect = card.getBoundingClientRect();
-        const svgRect = svg.getBoundingClientRect();
+    if (!pin || !card) return;
 
-        const startX = pinRect.left + pinRect.width / 2 - svgRect.left;
-        const startY = pinRect.top + pinRect.height / 2 - svgRect.top;
+    const pinRect = pin.getBoundingClientRect();
+    const cardRect = card.getBoundingClientRect();
+    const svgRect = svg.getBoundingClientRect();
 
-        const endX =
-            cardRect.left > pinRect.left
-                ? cardRect.left - svgRect.left
-                : cardRect.right - svgRect.left;
+    const startX = pinRect.left + pinRect.width / 2 - svgRect.left;
+    const startY = pinRect.top + pinRect.height / 2 - svgRect.top;
 
-        const endY = cardRect.top + cardRect.height / 2 - svgRect.top;
+    const endX =
+      cardRect.left > pinRect.left
+        ? cardRect.left - svgRect.left
+        : cardRect.right - svgRect.left;
 
-        const midX = startX + (endX - startX) * 0.6;
+    const endY = cardRect.top + cardRect.height / 2 - svgRect.top;
 
-        const path = document.createElementNS("http://www.w3.org/2000/svg", "path");
+    const midX = startX + (endX - startX) * 0.6;
 
-        path.setAttribute(
-            "d",
-            `M ${startX} ${startY}
-             L ${midX} ${startY}
-             L ${midX} ${endY}
-             L ${endX} ${endY}`
-        );
+    const path = document.createElementNS(
+      "http://www.w3.org/2000/svg",
+      "path"
+    );
 
-        path.setAttribute("class", "connector-path animate");
-        svg.appendChild(path);
-    });
+    path.setAttribute(
+      "d",
+      `M ${startX} ${startY}
+       L ${midX} ${startY}
+       L ${midX} ${endY}
+       L ${endX} ${endY}`
+    );
+
+    path.setAttribute("class", "connector-path animate");
+    svg.appendChild(path);
+  });
 }
 
 window.addEventListener("load", drawRoadmapConnectors);

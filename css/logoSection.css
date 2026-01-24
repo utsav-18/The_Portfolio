@@ -119,11 +119,10 @@
 .logo-train-cell img {
     width: 90px;
     z-index: 1;
-
     background: transparent;
     filter: none;
     opacity: 1;
-
+    border-radius: 80%;
     transition: transform 0.35s ease;
 }
 
@@ -142,13 +141,11 @@
 }
 /* logo inner box – forces equal visual size */
 .logo-inner {
-    width: 70px;
-    height: 70px;
-
+    width: 80px;
+    height: 80px;
     display: flex;
     align-items: center;
     justify-content: center;
-
     background: transparent;
 }
 

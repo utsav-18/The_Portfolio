@@ -196,3 +196,28 @@ document.querySelectorAll('.cta-glow-btn').forEach(btn => {
         btn.style.transform = '';
     });
 });
+
+
+
+
+// wastapp button integration JS is from here
+(() => {
+  const fab = document.querySelector('.wa-fab');
+  const popup = document.querySelector('.wa-popup');
+  const closeBtn = document.querySelector('.wa-close');
+
+  fab.addEventListener('click', () => {
+    popup.classList.toggle('active');
+  });
+
+  closeBtn.addEventListener('click', () => {
+    popup.classList.remove('active');
+  });
+
+  // Close when clicking outside
+  document.addEventListener('click', (e) => {
+    if (!e.target.closest('.wa-widget')) {
+      popup.classList.remove('active');
+    }
+  });
+})();

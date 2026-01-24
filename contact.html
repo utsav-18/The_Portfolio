@@ -199,45 +199,61 @@
 <script src="js/homePage.js"></script>
 
 <script>
-/* PHONE: ONLY NUMBERS */
-document.getElementById("phone").addEventListener("input", function () {
-    this.value = this.value.replace(/[^0-9]/g, "");
-});
+document.addEventListener("DOMContentLoaded", function () {
 
-/* GOOGLE SHEET SUBMIT */
-document.getElementById("contactForm").addEventListener("submit", function(e) {
-    e.preventDefault();
+  /* ===============================
+     CONFIG (REPLACE THIS URL)
+  ================================ */
+  const CALENDLY_URL = "https://calendly.com/test/demo"; // replace later
 
-    const payload = {
-        "Date": document.getElementById("date").value,
-        "Name": document.getElementById("name").value.trim(),
-        "Email": document.getElementById("email").value.trim(),
-        "Phone no": document.getElementById("phone").value.trim(),
-        "Job title": document.getElementById("jobTitle").value.trim(),
-        "Service required": document.getElementById("serviceRequired").value
-    };
+  /* PHONE: ONLY NUMBERS */
+  document.getElementById("phone").addEventListener("input", function () {
+      this.value = this.value.replace(/[^0-9]/g, "");
+  });
 
-    if (Object.values(payload).some(v => !v)) {
-        alert("Please fill all fields");
-        return;
-    }
+  /* FORM SUBMIT */
+  document.getElementById("contactForm").addEventListener("submit", function(e) {
+      e.preventDefault();
 
-    if (!/^\d{10}$/.test(payload["Phone no"])) {
-        alert("Phone number must be exactly 10 digits");
-        return;
-    }
+      const payload = {
+          "Date": document.getElementById("date").value,
+          "Name": document.getElementById("name").value.trim(),
+          "Email": document.getElementById("email").value.trim(),
+          "Phone no": document.getElementById("phone").value.trim(),
+          "Job title": document.getElementById("jobTitle").value.trim(),
+          "Service required": document.getElementById("serviceRequired").value
+      };
 
-    fetch("https://script.google.com/macros/s/AKfycbzEhAPVkYhMHYWGbfCQTU-8e36Z8iXOfYXaQN84Y6xBCpUnnUbx-v7qh95coDWNWMq7/exec", {
-        method: "POST",
-        mode: "no-cors",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(payload)
-    });
+      if (Object.values(payload).some(v => !v)) {
+          alert("Please fill all fields");
+          return;
+      }
 
-    alert("Form submitted successfully ✅");
-    document.getElementById("contactForm").reset();
+      if (!/^\d{10}$/.test(payload["Phone no"])) {
+          alert("Phone number must be exactly 10 digits");
+          return;
+      }
+
+      /* GOOGLE SHEET SUBMIT */
+      fetch("https://script.google.com/macros/s/AKfycbzEhAPVkYhMHYWGbfCQTU-8e36Z8iXOfYXaQN84Y6xBCpUnnUbx-v7qh95coDWNWMq7/exec", {
+          method: "POST",
+          mode: "no-cors",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(payload)
+      });
+
+      alert("Form submitted successfully ✅\nRedirecting to schedule your meeting...");
+
+      document.getElementById("contactForm").reset();
+
+      setTimeout(() => {
+          window.location.href = CALENDLY_URL;
+      }, 800);
+  });
+
 });
 </script>
+
 
 </body>
 </html>

@@ -15,6 +15,7 @@
             padding: 0;
             box-sizing: border-box;
         }
+        
 
         body {
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
@@ -364,10 +365,13 @@
 
         /* ↓ width reduced here */
         .image-wrapper {
+            border: 2px dotted orange;
             position: relative;
-            border-radius: 10px;
+            border-radius: 20px;
             overflow: hidden;
-            box-shadow: 0 25px 60px rgba(0, 0, 0, 0.6);
+           box-shadow:
+                0 40px 80px rgba(255,165,0,0.25),
+                0 10px 30px rgba(0,0,0,0.6);
             transition: all 0.4s ease;
             max-height: calc(100vh - 280px);
 
@@ -566,7 +570,7 @@
             }
 
             h1 {
-                font-size: clamp(2rem, 8vw, 3rem);
+                font-size: clamp(1.2rem, 3vw, 2rem);
             }
 
             .cta-buttons {
@@ -579,7 +583,6 @@
                 justify-content: center;
             }
         }
-
 
         /* reussable buttons */
     /* ================= PREMIUM CTA BUTTON ================= */
@@ -812,5 +815,212 @@ body.dark .cta-glow-btn {
   .wa-popup {
     width: 90vw;
     right: 0;
+  }
+}
+.hero-eyebrow {
+  display: inline-block;
+  margin-bottom: 14px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--primary-orange);
+  opacity: 0.9;
+}
+.cta-buttons {
+  margin-top: 10px;
+}
+
+.btn-primary {
+  font-size: 1.05rem;
+  padding: 18px 38px;
+}
+
+.btn-primary:hover {
+  transform: translateY(-3px) scale(1.03);
+}
+.hero-trust {
+  display: flex;
+  gap: 18px;
+  margin-top: 18px;
+  font-size: 0.85rem;
+  color: rgba(203, 213, 225, 0.85);
+}
+
+.hero-trust span {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.image-badge {
+  position: absolute;
+  bottom: -28px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(10, 10, 10, 0.85);
+  backdrop-filter: blur(14px);
+  padding: 12px 22px;
+  border-radius: 999px;
+  text-align: center;
+
+  /* ALWAYS visible */
+  opacity: 1;
+  pointer-events: none;
+
+  box-shadow:
+    0 12px 30px rgba(0,0,0,0.45),
+    0 0 0 1px rgba(255,140,0,0.15);
+
+  z-index: 5;
+}
+
+/* Name */
+.image-badge strong {
+  display: block;
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #ffffff;
+  line-height: 1.2;
+}
+
+/* Role */
+.image-badge span {
+  display: block;
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: #ff8c00;
+  margin-top: 2px;
+}
+
+/* Mobile tweak */
+@media (max-width: 768px) {
+  .image-badge {
+    bottom: -14px;
+    padding: 10px 18px;
+  }
+
+  .image-badge strong {
+    font-size: 0.9rem;
+  }
+}
+@media (max-width: 768px) {
+
+  /* Stack hero vertically */
+  .hero-content {
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+  }
+
+  /* Make text children act like direct siblings */
+  .hero-text {
+    display: contents;
+  }
+
+  /* ORDER CONTROL */
+  h1,
+  .hero-eyebrow,
+  .subtext {
+    order: 1; /* Heading first */
+    text-align: center;
+  }
+
+  .image-section {
+    order: 2; /* Image second */
+  }
+
+  .cta-buttons {
+    order: 3; /* CTA last */
+    justify-content: center;
+    margin-top: 20px;
+  }
+
+  /* Full-width CTA (thumb-friendly) */
+  .btn {
+    width: 100%;
+    max-width: 320px;
+  }
+}
+@media (max-width: 768px) {
+  .btn-primary {
+    font-size: 1.1rem;
+    padding: 18px 0;
+  }
+}
+@media (max-width: 768px) {
+
+  /* ================= REMOVE TOP VALUE STRIP ================= */
+  .hero-trust,
+  .hero-features,
+  .hero-points,
+  .top-features {
+    display: none !important;
+  }
+
+  /* ================= HERO LAYOUT ================= */
+  .hero-container {
+    padding: 88px 16px 24px; /* tighter */
+    min-height: auto;
+  }
+
+  .hero-content {
+    display: flex;
+    flex-direction: column;
+    gap: 20px; /* reduced spacing */
+  }
+
+  /* ================= TEXT FIRST ================= */
+  .hero-eyebrow,
+  h1,
+  .subtext {
+    text-align: center;
+    margin-bottom: 10px;
+  }
+
+  h1 {
+    font-size: 1.5rem;
+    line-height: 1.25;
+  }
+
+  .subtext {
+    font-size: 0.95rem;
+    line-height: 1.55;
+    margin-bottom: 14px;
+  }
+
+  /* ================= CTA ON FIRST SCREEN ================= */
+  .cta-buttons {
+    order: 2;
+    margin-top: 12px;
+    margin-bottom: 6px;
+    justify-content: center;
+  }
+
+  .btn-primary {
+    width: 100%;
+    max-width: 420px;
+    padding: 10px 5px;
+    font-size: 1.05rem;
+  }
+
+  /* ================= IMAGE SMALLER ================= */
+  .image-section {
+    order: 3;
+    margin-top: 10px;
+  }
+
+  .image-wrapper {
+    max-width: 300px;   /* smaller image */
+    max-height: 360px;
+  }
+
+  .profile-image {
+    max-height: 360px;
+    object-fit: cover;
+  }
+
+  /* Reduce badge spacing */
+  .image-badge {
+    bottom: -10px;
   }
 }

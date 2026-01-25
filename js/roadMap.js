@@ -2,36 +2,37 @@
 
 const roadmapSteps = [
   {
-    icon: "📞",
+    icon: "icon-call",
     title: "Virtual Meeting",
     desc: "We understand your business, audience, and goals.",
     tag: "Foundation"
   },
   {
-    icon: "📋",
+    icon: "icon-plan",
     title: "We Share a Custom Plan",
     desc: "A clear roadmap tailored for growth.",
     tag: "Blueprint"
   },
   {
-    icon: "🎨",
+    icon: "icon-execution",
     title: "Execution Begins",
-    desc: "Visuals and UX crafted for conversion.",
+    desc: "Campaign creatives and content production starts.",
     tag: "Creative"
   },
   {
-    icon: "⚙️",
+    icon: "icon-setup",
     title: "Development & Setup",
-    desc: "Clean, scalable, high-performance builds.",
+    desc: "Ads, tracking, and automation are configured.",
     tag: "Build"
   },
   {
-    icon: "🚀",
+    icon: "icon-growth",
     title: "Launch & Optimization",
-    desc: "Launch, monitor, improve, and scale.",
+    desc: "We scale, optimize, and maximize ROI continuously.",
     tag: "Growth"
   }
 ];
+
 
 /* ================= BUILD ROADMAP ================= */
 
@@ -49,7 +50,10 @@ roadmapSteps.forEach((step, i) => {
     </div>
 
     <div class="step-card">
-      <div class="step-icon">${step.icon}</div>
+        <div class="step-icon">
+          ${getRoadmapIcon(step.icon)}
+        </div>
+
       <h3 class="step-title">${step.title}</h3>
       <p class="step-description">${step.desc}</p>
       <span class="step-tag">${step.tag}</span>
@@ -164,3 +168,56 @@ function drawRoadmapConnectors() {
 
 window.addEventListener("load", drawRoadmapConnectors);
 window.addEventListener("resize", drawRoadmapConnectors);
+function getRoadmapIcon(type) {
+  const icons = {
+    "icon-call": `
+      <svg viewBox="0 0 24 24" fill="none">
+        <path d="M22 16.92v3a2 2 0 0 1-2.18 2
+        A19.8 19.8 0 0 1 3 5.18
+        A2 2 0 0 1 5 3h3a2 2 0 0 1 2 1.72
+        c.12.81.3 1.6.54 2.36
+        a2 2 0 0 1-.45 2.11L9 10
+        a16 16 0 0 0 6 6l.81-.81
+        a2 2 0 0 1 2.11-.45
+        c.76.24 1.55.42 2.36.54
+        A2 2 0 0 1 22 16.92Z"
+        stroke="currentColor" stroke-width="2"/>
+      </svg>
+    `,
+    "icon-plan": `
+      <svg viewBox="0 0 24 24" fill="none">
+        <path d="M4 4h16v16H4z" stroke="currentColor" stroke-width="2"/>
+        <path d="M8 2v4M16 2v4M8 10h8M8 14h6"
+        stroke="currentColor" stroke-width="2"/>
+      </svg>
+    `,
+    "icon-execution": `
+      <svg viewBox="0 0 24 24" fill="none">
+        <path d="M14 3l7 7-11 11H3v-7z"
+        stroke="currentColor" stroke-width="2"/>
+      </svg>
+    `,
+    "icon-setup": `
+      <svg viewBox="0 0 24 24" fill="none">
+        <circle cx="12" cy="12" r="3"
+        stroke="currentColor" stroke-width="2"/>
+        <path d="M19.4 15a7.9 7.9 0 0 0 .1-6
+        l2-1-2-3-2 1a8 8 0 0 0-4-2V2h-4v3
+        a8 8 0 0 0-4 2l-2-1-2 3 2 1
+        a7.9 7.9 0 0 0 0 6l-2 1 2 3 2-1
+        a8 8 0 0 0 4 2v3h4v-3
+        a8 8 0 0 0 4-2l2 1 2-3z"
+        stroke="currentColor" stroke-width="2"/>
+      </svg>
+    `,
+    "icon-growth": `
+      <svg viewBox="0 0 24 24" fill="none">
+        <path d="M3 17l6-6 4 4 7-7"
+        stroke="currentColor" stroke-width="2"/>
+        <path d="M14 7h7v7"
+        stroke="currentColor" stroke-width="2"/>
+      </svg>
+    `
+  };
+  return icons[type] || "";
+}

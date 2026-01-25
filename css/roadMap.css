@@ -399,3 +399,17 @@
 .step-tag {
     margin-top: 20px;
 }
+.step-icon {
+  width: 48px;
+  height: 48px;
+  margin-bottom: 18px;
+  color: #ff8c00;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.step-icon svg {
+  width: 28px;
+  height: 28px;
+}

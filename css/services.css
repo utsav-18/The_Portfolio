@@ -1,0 +1,492 @@
+/* =========================
+   SECTION
+========================= */
+
+.open-book-section {
+  max-width: 1200px;
+  margin: auto;
+  padding: 6rem 1.5rem;
+}
+
+.book-header {
+  text-align: center;
+  margin-bottom: 3.5rem;
+   position: relative;
+  z-index: 10;   /* 👈 ensures it stays above the book */
+  margin-bottom: 4rem;
+}
+
+.eyebrow {
+  color: #ff8c00;
+  letter-spacing: 0.25em;
+  font-size: 0.75rem;
+  font-weight: 700;
+}
+
+.book-header h2 {
+  font-size: clamp(2.4rem, 5vw, 3.6rem);
+  margin: 0.6rem 0;
+}
+
+.book-header p {
+  color: #9ca3af;
+  font-size: 1rem;
+}
+
+/* =========================
+   BOOK WRAPPER
+========================= */
+
+.book-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* =========================
+   BOOK
+========================= */
+
+.book {
+  position: relative;
+  width: 900px;
+  height: 480px;
+  perspective: 2200px;
+  transform-style: preserve-3d;
+}
+
+/* =========================
+   PAGE BASE
+========================= */
+
+.page {
+  position: absolute;
+  top: 0;
+  width: 50%;
+  height: 100%;
+  padding: 44px;
+
+  /* PURE PAPER — NO SHADOW SOURCE */
+  background: linear-gradient(180deg, #f9f2e6, #efe5d4);
+
+  color: #1e1e1e;
+  border-radius: 16px;
+
+  /* ONLY outer shadow */
+  box-shadow: 0 30px 60px rgba(0,0,0,0.35);
+
+  backface-visibility: hidden;
+}
+
+/* LEFT PAGE */
+.left-page {
+  left: 0;
+  border-radius: 16px 0 0 16px;
+  z-index: 3;
+}
+
+/* RIGHT PAGE */
+.right-page {
+  right: 0;
+  border-radius: 0 16px 16px 0;
+  transform-origin: left center;
+  cursor: pointer;
+  z-index: 4;
+}
+
+/* =========================
+   CONTENT
+========================= */
+
+.chapter {
+  display: inline-block;
+  font-size: 0.65rem;
+  font-weight: 800;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: #c17416;
+  margin-bottom: 14px;
+}
+
+.page h3 {
+  font-size: 1.8rem;
+  margin: 0.6rem 0;
+}
+
+.desc {
+  color: #4a4a4a;
+  margin-bottom: 1.2rem;
+}
+
+.page ul {
+  padding-left: 1.2rem;
+}
+
+.page li {
+  margin-bottom: 0.6rem;
+}
+
+.intent {
+  display: inline-block;
+  margin-top: 1.6rem;
+  color: #c47a19;
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+/* =========================
+   PAGE STACK (DEPTH)
+========================= */
+
+.page-stack,
+.page-stack.second {
+  position: absolute;
+  border-radius: 16px;
+  z-index: 0;
+}
+
+.page-stack {
+  background: #ede4d2;
+  transform: translateX(6px) translateZ(-30px);
+}
+
+.page-stack.second {
+  background: #e6dcc8;
+  transform: translateX(12px) translateZ(-60px);
+}
+
+/* =========================
+   SPIRAL (LEFT EDGE)
+========================= */
+
+.book::before {
+  content: "";
+  position: absolute;
+  left: -18px;
+  top: 18px;
+  bottom: 18px;
+  width: 14px;
+  background:
+    repeating-linear-gradient(
+      to bottom,
+      #444 0px,
+      #444 6px,
+      transparent 6px,
+      transparent 14px
+    );
+  border-radius: 8px;
+  box-shadow:
+    inset -2px 0 4px rgba(0,0,0,0.6),
+    2px 0 6px rgba(0,0,0,0.4);
+  z-index: 6;
+}
+@media (min-width: 901px) {
+  .left-page {
+    box-shadow: 0 26px 54px rgba(0,0,0,0.28) !important;
+  }
+}
+
+/* =========================
+   FLIP SHEET
+========================= */
+.flip-sheet {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  transform-origin: 0% 50%;
+  z-index: 5;
+
+  /* 👇 IMPORTANT */
+  opacity: 0;
+  background: none;
+}
+
+.flip-sheet {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background:
+    linear-gradient(to right, rgba(0,0,0,0.18), transparent 45%);
+  transform-origin: 0% 50%;
+  pointer-events: none;
+  z-index: 5;
+}
+.right-page:active {
+  transform: scale(0.995);
+}
+.flip-sheet.turn {
+  opacity: 1;
+  background: linear-gradient(
+    to right,
+    rgba(0,0,0,0.25),
+    rgba(0,0,0,0.12),
+    transparent 60%
+  );
+}
+
+.flip-sheet.turn {
+  animation: pageTurn 1.5s cubic-bezier(.18,.92,.25,1) forwards;
+}
+@keyframes pageTurn {
+  0% {
+    transform: rotateY(0deg);
+    box-shadow: inset -12px 0 20px rgba(0,0,0,0.15);
+  }
+
+  40% {
+    transform: rotateY(-70deg);
+    box-shadow: inset -40px 0 50px rgba(0,0,0,0.35);
+  }
+
+  70% {
+    transform: rotateY(-130deg);
+    box-shadow: inset -20px 0 30px rgba(0,0,0,0.25);
+  }
+
+  100% {
+    transform: rotateY(-180deg);
+    box-shadow: none;
+  }
+}
+
+/* =========================
+   TAP HINT (FIXED & BIG)
+========================= */
+
+.tap-hint {
+  position: absolute;
+  bottom: -52px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 1.4rem; /* 👈 BIG */
+  font-weight: 700;
+  color: #ff8c00;
+  text-align: center;
+}
+
+/* =========================
+   MOBILE OPTIMIZATION
+========================= */
+
+@media (max-width: 900px) {
+
+  .book {
+    width: 100%;
+    height: 480px;
+  }
+
+  .left-page {
+    display: none;
+  }
+
+  .page {
+    width: 100%;
+    left: 0;
+    right: auto;
+    padding: 32px 28px 52px;
+    border-radius: 18px;
+  }
+
+  .right-page {
+    transform-origin: 0% 50%; /* 👈 hinge from spiral */
+  }
+
+  .tap-hint {
+    font-size: 1.6rem; /* 👈 EXTRA BIG ON MOBILE */
+    bottom: -46px;
+  }
+
+  .page h3 {
+    font-size: 1.6rem;
+  }
+
+  .desc,
+  .page li {
+    font-size: 0.95rem;
+  }
+}
+/* =========================
+   CENTER DIVIDER (DESKTOP)
+========================= */
+@media (min-width: 901px) {
+  .book::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 50%;
+    width: 10px;
+    height: 100%;
+    transform: translateX(-50%);
+    background: linear-gradient(
+      to right,
+      #cbbfa8,
+      #efe5d4,
+      #cbbfa8
+    );
+    box-shadow:
+      inset 2px 0 4px rgba(0,0,0,0.25),
+      inset -2px 0 4px rgba(255,255,255,0.4);
+    border-radius: 6px;
+    z-index: 6;
+    pointer-events: none;
+  }
+}
+.right-page:active {
+  transform: scale(0.995);
+}
+@media (hover: hover) {
+  .book:hover {
+    transform: rotateX(5deg) rotateZ(-0.4deg);
+    transition: transform 0.6s ease;
+  }
+}
+/* =========================
+   REMOVE SPIRAL — DESKTOP ONLY
+========================= */
+@media (min-width: 901px) {
+  .book::before {
+    display: none !important;
+    content: none !important;
+  }
+}
+@media (min-width: 901px) {
+
+  .left-page {
+    background:
+      radial-gradient(
+        circle at right center,
+        rgba(0,0,0,0.12),
+        transparent 55%
+      ),
+      linear-gradient(180deg, #f8f1e6, #f1e7d6);
+  }
+
+  .right-page {
+    background:
+      radial-gradient(
+        circle at left center,
+        rgba(0,0,0,0.12),
+        transparent 55%
+      ),
+      linear-gradient(180deg, #f9f2e6, #efe5d4);
+  }
+
+}
+
+@media (min-width: 901px) {
+
+ .left-page {
+  box-shadow:
+    0 28px 60px rgba(0,0,0,0.35);
+}
+
+
+  .right-page {
+    box-shadow:
+      inset 18px 0 26px rgba(0,0,0,0.12);
+  }
+
+}
+@media (min-width: 901px) {
+
+  .book {
+    position: relative;
+    perspective: 2400px;
+    transform-style: preserve-3d;
+    transform: rotateX(4deg);
+  }
+
+}
+@media (min-width: 901px) {
+
+  .book::after {
+    content: "";
+    position: absolute;
+    top: 16px;
+    bottom: 16px;
+    left: 50%;
+    width: 14px;
+    transform: translateX(-50%);
+
+    background: linear-gradient(
+      to right,
+      rgba(0,0,0,0.25),
+      rgba(255,255,255,0.6),
+      rgba(0,0,0,0.25)
+    );
+
+    border-radius: 8px;
+    opacity: 0.6;
+    z-index: 6;
+    pointer-events: none;
+  }
+
+}
+@media (min-width: 901px) {
+
+  /* LEFT PAGE STACK */
+  .page-stack {
+    position: absolute;
+    inset: 0;
+    background: #e6dcc8;
+    border-radius: 16px;
+    transform: translateX(-22px) translateZ(-40px);
+    box-shadow:
+        inset -3px 0 6px rgba(0,0,0,0.18),
+      0 6px 14px rgba(0,0,0,0.22);
+    z-index: 1;
+  }
+
+  /* RIGHT PAGE STACK */
+  .page-stack.second {
+    background: #dfd4bf;
+    transform: translateX(22px) translateZ(-80px);
+    box-shadow:
+      inset 6px 0 12px rgba(0,0,0,0.3),
+      0 12px 24px rgba(0,0,0,0.25);
+    z-index: 0;
+  }
+
+}
+
+  .right-page {
+    box-shadow:
+      inset 22px 0 28px rgba(0,0,0,0.14),
+      0 30px 60px rgba(0,0,0,0.35);
+  }
+
+
+@media (min-width: 901px) {
+
+  .book {
+    perspective: 2600px;
+    transform-style: preserve-3d;
+    transform: rotateX(5deg) rotateZ(-0.3deg);
+  }
+
+}
+@media (min-width: 901px) {
+
+  .left-page {
+    transform: rotateY(2.5deg);
+  }
+
+  .right-page {
+    transform: rotateY(-2.5deg);
+  }
+
+}
+@media (min-width: 901px) {
+  .right-page {
+    background:
+      radial-gradient(
+        circle at left center,
+        rgba(0,0,0,0.08),
+        transparent 55%
+      ),
+      linear-gradient(180deg, #f9f2e6, #efe5d4);
+  }
+}

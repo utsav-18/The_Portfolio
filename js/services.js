@@ -1,3 +1,7 @@
+/* =========================
+   BOOK DATA
+========================= */
+
 const spreads = [
   [
     {
@@ -95,16 +99,40 @@ const spreads = [
       intent: "Start • Scale • Win"
     }
   ]
-];
-let index = 0;
+];/* =========================
+   STATE
+========================= */
+
+let desktopIndex = 0;
+let mobileIndex = 0;
 let isFlipping = false;
+
+/* Always check live screen size */
+function isMobileView() {
+  return window.matchMedia("(max-width: 900px)").matches;
+}
+
+/* =========================
+   FLATTEN FOR MOBILE
+========================= */
+
+const mobileChapters = spreads.flat();
+
+/* =========================
+   DOM REFERENCES
+========================= */
 
 const leftPage = document.getElementById("leftPage");
 const rightPage = document.getElementById("rightPage");
 const flipSheet = document.getElementById("flipSheet");
 
-/* ---------- RENDER ---------- */
+/* =========================
+   RENDER
+========================= */
+
 function renderPage(el, data) {
+  if (!el || !data) return;
+
   el.innerHTML = `
     <span class="chapter">${data.chapter}</span>
     <h3>${data.title}</h3>
@@ -114,47 +142,85 @@ function renderPage(el, data) {
   `;
 }
 
-function loadSpread(i) {
-  renderPage(leftPage, spreads[i][0]);
-  renderPage(rightPage, spreads[i][1]);
+function loadPages() {
+  if (isMobileView()) {
+    renderPage(rightPage, mobileChapters[mobileIndex]);
+  } else {
+    renderPage(leftPage, spreads[desktopIndex][0]);
+    renderPage(rightPage, spreads[desktopIndex][1]);
+  }
 }
 
-loadSpread(index);
+/* =========================
+   INITIAL LOAD
+========================= */
 
-/* ---------- FLIP ---------- */
+loadPages();
+
+/* =========================
+   FLIP
+========================= */
+
 function flipForward(e) {
   e.preventDefault();
-  e.stopImmediatePropagation();
-
   if (isFlipping) return;
   isFlipping = true;
 
-  // 🔒 HARD DOM LOCK
   rightPage.style.pointerEvents = "none";
-
   flipSheet.classList.add("turn");
 
-  // Change content at midpoint
   setTimeout(() => {
-    index = (index + 1) % spreads.length;
-    loadSpread(index);
+    if (isMobileView()) {
+      mobileIndex = (mobileIndex + 1) % mobileChapters.length;
+    } else {
+      desktopIndex = (desktopIndex + 1) % spreads.length;
+    }
+    loadPages();
   }, 700);
 
-  // Unlock after animation
   setTimeout(() => {
     flipSheet.classList.remove("turn");
     rightPage.style.pointerEvents = "auto";
     isFlipping = false;
-  }, 1500); // MUST match CSS animation
+  }, 1500);
 }
 
-/* ---------- SINGLE EVENT ONLY ---------- */
+/* =========================
+   INPUT
+========================= */
 
-// ❌ DO NOT USE click
-// ❌ DO NOT USE touchstart
-// ✅ POINTERDOWN ONLY
+rightPage.addEventListener("pointerdown", flipForward, { passive: false });
 
-rightPage.addEventListener("pointerdown", flipForward, {
-  passive: false
+/* =========================
+   RESET ON RESIZE (IMPORTANT)
+========================= */
+
+window.addEventListener("resize", () => {
+  desktopIndex = 0;
+  mobileIndex = 0;
+  loadPages();
 });
+function renderPage(el, data) {
+  el.innerHTML = `
+    <div class="page-head">
+      <svg class="page-icon">
+        <use href="#${data.icon}"></use>
+      </svg>
+      <span class="chapter">${data.chapter}</span>
+    </div>
 
+    <h3>${data.title}</h3>
+    <p class="desc">${data.desc}</p>
+
+    <ul class="feature-list">
+      ${data.points.map(p => `
+        <li>
+          <span class="dot"></span>
+          ${p}
+        </li>
+      `).join("")}
+    </ul>
+
+    <span class="intent">${data.intent}</span>
+  `;
+}

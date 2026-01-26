@@ -158,7 +158,6 @@
 /* =========================
    SPIRAL (LEFT EDGE)
 ========================= */
-
 .book::before {
   content: "";
   position: absolute;
@@ -185,7 +184,6 @@
     box-shadow: 0 26px 54px rgba(0,0,0,0.28) !important;
   }
 }
-
 /* =========================
    FLIP SHEET
 ========================= */
@@ -353,7 +351,6 @@
   }
 }
 @media (min-width: 901px) {
-
   .left-page {
     background:
       radial-gradient(
@@ -363,7 +360,6 @@
       ),
       linear-gradient(180deg, #f8f1e6, #f1e7d6);
   }
-
   .right-page {
     background:
       radial-gradient(
@@ -373,32 +369,25 @@
       ),
       linear-gradient(180deg, #f9f2e6, #efe5d4);
   }
-
 }
-
 @media (min-width: 901px) {
 
  .left-page {
   box-shadow:
     0 28px 60px rgba(0,0,0,0.35);
 }
-
-
   .right-page {
     box-shadow:
       inset 18px 0 26px rgba(0,0,0,0.12);
   }
-
 }
 @media (min-width: 901px) {
-
   .book {
     position: relative;
     perspective: 2400px;
     transform-style: preserve-3d;
     transform: rotateX(4deg);
   }
-
 }
 @media (min-width: 901px) {
 
@@ -460,7 +449,6 @@
 
 
 @media (min-width: 901px) {
-
   .book {
     perspective: 2600px;
     transform-style: preserve-3d;
@@ -489,4 +477,166 @@
       ),
       linear-gradient(180deg, #f9f2e6, #efe5d4);
   }
+}
+
+/* =========================
+   🔥 TRANSFORM SANITY RESET
+========================= */
+
+/* BOOK — one transform only */
+@media (min-width: 901px) {
+  .book {
+    transform: rotateX(4deg);
+    transition: transform 0.6s ease;
+  }
+
+  .book:hover {
+    transform: rotateX(6deg);
+  }
+}
+
+/* PAGES — NEVER pre-rotate */
+.left-page,
+.right-page {
+  transform: none !important;
+}
+
+/* RIGHT PAGE — only flips when animated */
+.right-page {
+  transform-origin: left center;
+}
+
+/* REMOVE accidental active scaling conflicts */
+.right-page:active {
+  transform: none;
+}
+
+/* FLIP SHEET controls motion */
+.flip-sheet {
+  transform-origin: 0% 50%;
+  will-change: transform;
+}
+
+/* Prevent hover stacking */
+@media (hover: hover) {
+  .book:hover .left-page,
+  .book:hover .right-page {
+    transform: none !important;
+  }
+}
+/* =========================
+   PAGE TURN HINT
+========================= */
+
+.page-hint {
+  position: absolute;
+  left: 50%;
+  bottom: -64px;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: 800;
+  font-size: 0.95rem;
+  color: #ff8c00;
+  opacity: 0.9;
+  animation: hintPulse 2.4s ease-in-out infinite;
+  pointer-events: none;
+  user-select: none;
+}
+
+.hint-icon {
+  font-size: 1.3rem;
+  animation: tapBounce 1.8s ease-in-out infinite;
+}
+
+/* Desktop text */
+@media (min-width: 901px) {
+  .hint-text::after {
+    content: " →";
+  }
+}
+
+/* Mobile text */
+@media (max-width: 900px) {
+  .hint-text {
+    font-size: 1rem;
+  }
+}
+
+/* =========================
+   PREMIUM CONTENT ENHANCEMENTS
+========================= */
+
+.page-head {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 12px;
+}
+
+.page-icon {
+  width: 26px;
+  height: 26px;
+  color: #ff8c00;
+  opacity: 0.9;
+}
+
+/* Feature list */
+.feature-list {
+  list-style: none;
+  padding: 0;
+  margin: 1.4rem 0;
+}
+
+.feature-list li {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  margin-bottom: 10px;
+  font-size: 0.95rem;
+  color: #3f3f3f;
+}
+
+/* Elegant bullet */
+.feature-list .dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #ff8c00;
+  margin-top: 7px;
+  flex-shrink: 0;
+  box-shadow: 0 0 6px rgba(255,140,0,0.45);
+}
+
+/* Intent line polish */
+.intent {
+  display: inline-block;
+  margin-top: 1.4rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #c47a19;
+  letter-spacing: 0.04em;
+}
+.chapter {
+  font-size: 0.65rem;
+  letter-spacing: 0.35em;
+  color: #c17416;
+  opacity: 0.85;
+}
+.page {
+  background:
+    radial-gradient(circle at 30% 20%, rgba(0,0,0,0.04), transparent 40%),
+    linear-gradient(180deg, #f9f2e6, #efe5d4);
+}
+.tap-hint {
+  font-size: 0.85rem;
+  letter-spacing: 0.08em;
+  opacity: 0.85;
+  animation: pulseHint 2.5s ease-in-out infinite;
+}
+
+@keyframes pulseHint {
+  0%,100% { opacity: 0.6 }
+  50% { opacity: 1 }
 }

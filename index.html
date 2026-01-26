@@ -144,6 +144,32 @@
   </div>
 </div>
 
+<svg xmlns="http://www.w3.org/2000/svg" style="display:none">
+
+  <symbol id="icon-chat" viewBox="0 0 24 24">
+    <path d="M4 4h16v12H7l-3 3V4z" fill="none" stroke="currentColor" stroke-width="1.6"/>
+  </symbol>
+
+  <symbol id="icon-ads" viewBox="0 0 24 24">
+    <path d="M3 20l7-16 4 9 7-5" fill="none" stroke="currentColor" stroke-width="1.6"/>
+  </symbol>
+
+  <symbol id="icon-funnel" viewBox="0 0 24 24">
+    <path d="M3 4h18l-7 8v6l-4 2v-8z" fill="none" stroke="currentColor" stroke-width="1.6"/>
+  </symbol>
+
+  <symbol id="icon-growth" viewBox="0 0 24 24">
+    <path d="M4 18l6-6 4 4 6-8" fill="none" stroke="currentColor" stroke-width="1.6"/>
+  </symbol>
+
+  <symbol id="icon-system" viewBox="0 0 24 24">
+    <circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="1.6"/>
+    <path d="M12 7v10M7 12h10" stroke="currentColor" stroke-width="1.6"/>
+  </symbol>
+
+</svg>
+
+
     <!-- ============================================ -->
     <!-- YOU CAN ADD MORE SECTIONS FROM HERE -->
     <!-- The particle background will appear on all sections -->
@@ -429,33 +455,64 @@
     <h2>Our Growth Playbook</h2>
     <p>Each spread is a system. Turn the page to continue.</p>
   </header>
+<div class="book-wrapper">
 
-  <div class="book-wrapper">
-
+  <!-- DESKTOP BOOK -->
   <div class="book">
+    <div class="page-hint" id="pageHint">
+  <span class="hint-text">Tap to turn page</span>
+  <span class="hint-icon">👆</span>
+</div>
 
-  <!-- LEFT PAGE EDGES -->
-  <div class="page-stack"></div>
-  <div class="page-stack second"></div>
+    <div class="page-stack"></div>
+    <div class="page-stack second"></div>
+    <div class="book-spine"></div>
 
-  <!-- REAL SPINE -->
-  <div class="book-spine"></div>
+    <div class="page left-page" id="leftPage"></div>
+    <div class="page right-page" id="rightPage"></div>
+    <div class="flip-sheet" id="flipSheet"></div>
+  </div>
 
-  <!-- LEFT PAGE -->
-  <div class="page left-page" id="leftPage"></div>
+  <!-- MOBILE CHAPTER LIST -->
+  <div class="mobile-chapters">
 
-  <!-- RIGHT PAGE -->
-  <div class="page right-page" id="rightPage"></div>
+    <div class="chapter-card">
+      <span class="chapter-label">Chapter 01</span>
+      <h3>Performance Marketing</h3>
+      <p>Acquire customers profitably with intent-driven campaigns.</p>
+      <ul>
+        <li>Google & Meta ads</li>
+        <li>Conversion tracking</li>
+        <li>ROAS optimization</li>
+      </ul>
+    </div>
 
-  <!-- FLIP SHEET -->
-  <div class="flip-sheet" id="flipSheet"></div>
+    <div class="chapter-card">
+      <span class="chapter-label">Chapter 02</span>
+      <h3>SEO & Content Growth</h3>
+      <p>Build compounding organic visibility.</p>
+      <ul>
+        <li>Technical SEO</li>
+        <li>Content systems</li>
+        <li>Analytics & tracking</li>
+      </ul>
+    </div>
 
+    <div class="chapter-card highlight">
+      <span class="chapter-label">Final Chapter</span>
+      <h3>Let’s Build Your Growth System</h3>
+      <p>A system tailored to your business.</p>
+      <ul>
+        <li>Custom strategy</li>
+        <li>Execution roadmap</li>
+        <li>Clear KPIs</li>
+      </ul>
+    </div>
 
+  </div>
 
 </div>
 
-
-</section>
 
     <!-- CERTIFICATES SECTION -->
     <section class="cert-section" id="certificates">

@@ -854,13 +854,13 @@ body.dark .cta-glow-btn {
 }
 .image-badge {
   position: absolute;
-  bottom: -28px;
+  bottom: -68px;
   left: 50%;
   transform: translateX(-50%);
   background: rgba(10, 10, 10, 0.85);
   backdrop-filter: blur(14px);
-  padding: 12px 22px;
-  border-radius: 999px;
+  padding: 14px 22px;
+  border-radius: 299px;
   text-align: center;
 
   /* ALWAYS visible */
@@ -877,7 +877,7 @@ body.dark .cta-glow-btn {
 /* Name */
 .image-badge strong {
   display: block;
-  font-size: 0.95rem;
+  font-size: 0.65rem;
   font-weight: 700;
   color: #ffffff;
   line-height: 1.2;
@@ -886,7 +886,7 @@ body.dark .cta-glow-btn {
 /* Role */
 .image-badge span {
   display: block;
-  font-size: 0.75rem;
+  font-size: 0.9rem;
   font-weight: 500;
   color: #ff8c00;
   margin-top: 2px;
@@ -895,7 +895,7 @@ body.dark .cta-glow-btn {
 /* Mobile tweak */
 @media (max-width: 768px) {
   .image-badge {
-    bottom: -14px;
+    bottom: -34px;
     padding: 10px 18px;
   }
 
@@ -947,6 +947,7 @@ body.dark .cta-glow-btn {
     padding: 18px 0;
   }
 }
+
 @media (max-width: 768px) {
 
   /* ================= REMOVE TOP VALUE STRIP ================= */
@@ -1022,5 +1023,310 @@ body.dark .cta-glow-btn {
   /* Reduce badge spacing */
   .image-badge {
     bottom: -10px;
+  }
+}
+/* ===============================
+   REUSABLE PREMIUM CTA BUTTON
+   =============================== */
+
+.dp-cta-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  margin: 2.5rem 0;
+}
+
+/* Main Button */
+.dp-cta-btn {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+
+  padding: 16px 34px;
+  border-radius: 999px;
+
+  background: linear-gradient(
+    135deg,
+    var(--primary-orange),
+    var(--secondary-orange)
+  );
+
+  color: var(--text-main);
+  font-size: 1rem;
+  font-weight: 600;
+  letter-spacing: 0.4px;
+  text-decoration: none;
+
+  box-shadow:
+    0 10px 35px rgba(255, 140, 0, 0.35),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.08);
+
+  overflow: hidden;
+  transition: all 0.35s ease;
+}
+
+/* Text */
+.dp-cta-text {
+  position: relative;
+  z-index: 2;
+}
+
+/* Arrow */
+.dp-cta-arrow {
+  position: relative;
+  z-index: 2;
+  font-size: 1.15rem;
+  transition: transform 0.35s ease;
+}
+
+/* Glow Overlay */
+.dp-cta-btn::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+
+  background: radial-gradient(
+    circle at top left,
+    rgba(255, 255, 255, 0.25),
+    transparent 60%
+  );
+
+  opacity: 0;
+  transition: opacity 0.35s ease;
+}
+
+/* Hover Effects */
+.dp-cta-btn:hover {
+  transform: translateY(-3px);
+  box-shadow:
+    0 18px 45px rgba(255, 140, 0, 0.45),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.12);
+}
+
+.dp-cta-btn:hover::before {
+  opacity: 1;
+}
+
+.dp-cta-btn:hover .dp-cta-arrow {
+  transform: translateX(6px);
+}
+
+/* Active */
+.dp-cta-btn:active {
+  transform: translateY(0);
+  box-shadow:
+    0 8px 25px rgba(255, 140, 0, 0.35);
+}
+
+/* ===============================
+   MOBILE OPTIMIZATION
+   =============================== */
+
+@media (max-width: 768px) {
+  .dp-cta-wrapper {
+    margin: 1.8rem 0;
+  }
+
+  .dp-cta-btn {
+    padding: 14px 28px;
+    font-size: 0.95rem;
+  }
+
+  .dp-cta-arrow {
+    font-size: 1.05rem;
+  }
+}
+
+/* ===============================
+   EXTRA SMALL DEVICES
+   =============================== */
+
+@media (max-width: 480px) {
+  .dp-cta-btn {
+    width: 100%;
+    max-width: 320px;
+    justify-content: center;
+  }
+}
+/* =====================================================
+   FINAL HERO + CTA FIX (AUTHORITATIVE – LAST WINS)
+   ===================================================== */
+
+@media (max-width: 768px) {
+
+  /* --- HERO STACK --- */
+  .hero-content {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+  }
+
+  /* --- TEXT FIRST --- */
+  .hero-eyebrow,
+  h1,
+  .subtext {
+    text-align: center;
+  }
+
+  h1 {
+    font-size: 1.55rem;
+    line-height: 1.25;
+  }
+
+  .subtext {
+    font-size: 0.95rem;
+    line-height: 1.55;
+    margin-bottom: 6px;
+  }
+
+  /* --- IMAGE SECOND --- */
+  .image-section {
+    order: 2;
+    margin-top: 10px;
+  }
+
+  .image-wrapper {
+    max-width: 300px;
+    margin: 0 auto;
+  }
+
+  .profile-image {
+    max-height: 360px;
+    object-fit: cover;
+  }
+
+  /* --- CTA LAST (PREMIUM PILL) --- */
+  .cta-buttons,
+  .dp-cta-wrapper {
+    order: 3;
+    margin-top: 16px;
+    display: flex;
+    justify-content: center;
+  }
+
+  /* Kill full-width button behavior */
+  .btn,
+  .btn-primary {
+    width: auto !important;
+    max-width: none !important;
+  }
+
+  /* Final CTA size */
+  .dp-cta-btn {
+    min-width: 220px;
+    max-width: 260px;
+    padding: 14px 28px;
+    font-size: 0.95rem;
+  }
+}
+
+/* Extra small phones */
+@media (max-width: 480px) {
+  .dp-cta-btn {
+    min-width: 200px;
+    max-width: 230px;
+  }
+}
+/* =========================================
+   HOME PAGE – LEFT CONTENT ALIGNMENT (FIXED)
+   ========================================= */
+
+.hero-home .hero-text {
+  max-width: 620px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 18px;
+}
+
+/* Eyebrow */
+.hero-home .hero-eyebrow {
+  text-align: left;
+}
+
+/* Headline */
+.hero-home .hero-text h1 {
+  text-align: left;
+  line-height: 1.08;
+  letter-spacing: -0.02em;
+}
+
+/* Paragraph */
+.hero-home .subtext {
+  max-width: 560px;
+  line-height: 1.65;
+  color: rgba(203, 213, 225, 0.9);
+  text-align: left;
+}
+
+/* CTA aligned with text */
+.hero-home .dp-cta-wrapper {
+  justify-content: flex-start;
+  margin-top: 8px;
+}
+
+/* Trust row aligned */
+.hero-home .hero-trust {
+  justify-content: flex-start;
+}
+
+/* ================= MOBILE SAFETY ================= */
+@media (max-width: 768px) {
+  .hero-home .hero-text {
+    align-items: center;
+    text-align: center;
+  }
+
+  .hero-home .subtext {
+    text-align: center;
+  }
+
+  .hero-home .dp-cta-wrapper {
+    justify-content: center;
+  }
+}
+/* =========================================
+   MOBILE: CENTER HERO TITLE ONLY (HOME)
+   ========================================= */
+
+@media (max-width: 768px) {
+  .hero-home .hero-text h1 {
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+/* =========================================
+   MOBILE FIX: IMAGE BADGE TEXT (HOME ONLY)
+   ========================================= */
+
+@media (max-width: 768px) {
+
+  .hero-home .image-badge {
+    bottom: -6px;                 /* pull closer to image */
+    padding: 8px 16px;            /* smaller, tighter */
+    max-width: 240px;
+    border-radius: 14px;
+    text-align: center;
+  }
+
+  .hero-home .image-badge strong {
+    font-size: 0.85rem;           /* name smaller */
+    line-height: 1.2;
+  }
+
+  .hero-home .image-badge span {
+    font-size: 0.7rem;            /* role lighter */
+    opacity: 0.9;
+    margin-top: 4px;
+  }
+}
+
+/* Extra small phones */
+@media (max-width: 480px) {
+  .hero-home .image-badge {
+    max-width: 220px;
   }
 }

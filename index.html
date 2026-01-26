@@ -51,8 +51,6 @@
   </div>
 </div>
 
-
-
 <body>
     <!-- Particle Canvas - Fixed Background for All Sections -->
     <canvas id="particleCanvas"></canvas>
@@ -80,7 +78,7 @@
 
     <!-- Hero Section -->
 <!-- Hero Section -->
-<div class="hero-container" id="home">
+<div class="hero-container hero hero-home" id="home">
   <div class="hero-content">
 
     <!-- LEFT: TEXT -->
@@ -99,18 +97,14 @@
         through data-backed digital campaigns — not guesswork.
       </p>
 
-      <!-- CTA -->
-      <div class="cta-buttons">
-        <button class="btn btn-primary">
-          <span>
-             <a href="contact.html" class="nav-cta">Book a Call Now</a>
-            <svg class="arrow" width="20" height="20" viewBox="0 0 24 24" fill="none"
-              stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M5 12h14M12 5l7 7-7 7"/>
-            </svg>
-          </span>
-        </button>
-      </div>
+      <!-- PREMIUM CTA BUTTON -->
+  <div class="dp-cta-wrapper">
+    <a href="contact.html" class="dp-cta-btn" id="dpContactBtn">
+      <span class="dp-cta-text">Book a Call</span>
+      <span class="dp-cta-arrow">→</span>
+    </a>
+  </div>
+
 
       <!-- Micro Trust -->
       <div class="hero-trust">
@@ -129,7 +123,7 @@
         <div class="glow-orb orb-2"></div>
 
         <div class="image-wrapper">
-          <img src="images/profile.WEBP" alt="Arpit Garg – Growth Consultant" class="profile-image">
+          <img src="images/WhatsApp Image 2026-01-26 at 11.46.03 PM.jpeg" alt="Arpit Garg – Growth Consultant" class="profile-image">
         </div>
 
         <!-- Image Badge -->
@@ -334,7 +328,16 @@
     </div>
   </article>
 
+  <div class="dp-cta-wrapper">
+  <a href="contact.html" class="dp-cta-btn" id="dpContactBtn">
+    <span class="dp-cta-text">Book a Call</span>
+    <span class="dp-cta-arrow">→</span>
+  </a>
+</div>
+
 </section>
+
+     <!-- PREMIUM CTA BUTTON -->
 
  <!-- Logo Section starts from here -->
 <section class="logo-train-section">
@@ -438,12 +441,14 @@
                 </div>
                 <!-- Steps injected by JS -->
             </div>
-              <div class="cta-button-wrap">
-              <button class="cta-glow-btn">
-                  <span class="cta-text">Book a Call</span>
-                  <span class="cta-shine"></span>
-              </button>
-            </div>
+
+                  <div class="dp-cta-wrapper">
+        <a href="contact.html" class="dp-cta-btn" id="dpContactBtn">
+          <span class="dp-cta-text">Book a Call</span>
+          <span class="dp-cta-arrow">→</span>
+        </a>
+</div>
+              
         </section>
 
 
@@ -513,8 +518,7 @@
 
 </div>
 
-
-    <!-- CERTIFICATES SECTION -->
+<!-- CERTIFICATES SECTION -->
     <section class="cert-section" id="certificates">
         <h2 class="cert-title">
             <span>My</span> Certifications
@@ -547,8 +551,8 @@
             </div>
 
         </div>
+    </div>
     </section>
-
 
         <!-- My Team Section -->
         <section class="team-section">

@@ -1,4 +1,4 @@
- /* ROOT COLOR PALETTE */
+/* ROOT COLOR PALETTE */
         :root {
             --bg-dark: #050505;
             --bg-card: #0a0a0a;
@@ -17,7 +17,6 @@
     position: relative;
     background: transparent;
     z-index: 1;
-    margin-top: -50px;
 }
 
 .cert-title {

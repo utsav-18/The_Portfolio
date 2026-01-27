@@ -8,23 +8,25 @@ const spreads = [
       chapter: "Chapter 01",
       title: "WhatsApp Marketing & CRM",
       desc: "Turn conversations into predictable revenue.",
+       image: "images/watsapp_img.jpg",
       points: [
         "Automated follow-ups & broadcasts",
         "CRM pipelines & lead tracking",
         "Retention & repeat revenue flows"
       ],
-      intent: "Retention • Automation"
+    
     },
     {
       chapter: "Chapter 02",
       title: "Google Ads",
       desc: "Capture high-intent demand at scale.",
+       image: "images/google ads.jpg",
       points: [
         "Search intent funnels",
         "YouTube performance ads",
         "ROAS-focused scaling"
       ],
-      intent: "Intent • Scale • ROAS"
+     
     }
   ],
   [
@@ -32,23 +34,25 @@ const spreads = [
       chapter: "Chapter 03",
       title: "Facebook & Instagram Ads",
       desc: "Scale demand using creative-led paid media.",
+       image: "images/facebook_img.jpg",
       points: [
         "High-converting creatives",
         "Audience & funnel structuring",
         "Performance scaling systems"
       ],
-      intent: "Creative • Scale"
+     
     },
     {
       chapter: "Chapter 04",
       title: "Landing Pages & Websites",
       desc: "Turn traffic into conversions.",
+       image: "images/lp.jpg",
       points: [
         "Conversion-focused layouts",
         "Speed & UX optimization",
         "Analytics & tracking setup"
       ],
-      intent: "Conversion • UX"
+    
     }
   ],
   [
@@ -56,23 +60,25 @@ const spreads = [
       chapter: "Chapter 05",
       title: "Marketing Automation & SEO",
       desc: "Build compounding growth assets.",
+       image: "images/seo.jpg",
       points: [
         "Automation workflows",
         "SEO foundations & scaling",
         "Tracking & analytics"
       ],
-      intent: "Systems • Efficiency"
+      
     },
     {
       chapter: "Chapter 06",
       title: "Social Media Marketing",
       desc: "Build brand trust and visibility.",
+       image: "images/googleads.jpg",
       points: [
         "Content strategy",
         "Community growth",
         "Consistency systems"
       ],
-      intent: "Brand • Trust"
+      
     }
   ],
   [
@@ -80,23 +86,25 @@ const spreads = [
       chapter: "Chapter 07",
       title: "E-commerce Growth & Scaling",
       desc: "Scale revenue across channels.",
+       image: "images/meta_tags_image.jpg",
       points: [
         "Full-funnel optimization",
         "AOV & LTV growth",
         "Profit-first scaling"
       ],
-      intent: "Revenue • Scale"
+    
     },
     {
       chapter: "Final Chapter",
       title: "Let’s Build Your Growth System",
       desc: "A system tailored to your business.",
+       image: "images/groth.jpg",
       points: [
         "Custom strategy",
         "Execution roadmap",
         "Clear KPIs"
       ],
-      intent: "Start • Scale • Win"
+     
     }
   ]
 ];/* =========================
@@ -107,14 +115,9 @@ let desktopIndex = 0;
 let mobileIndex = 0;
 let isFlipping = false;
 
-/* Always check live screen size */
 function isMobileView() {
   return window.matchMedia("(max-width: 900px)").matches;
 }
-
-/* =========================
-   FLATTEN FOR MOBILE
-========================= */
 
 const mobileChapters = spreads.flat();
 
@@ -134,11 +137,24 @@ function renderPage(el, data) {
   if (!el || !data) return;
 
   el.innerHTML = `
+    <div class="page-image">
+      <img src="${data.image}" alt="${data.title}" loading="lazy">
+    </div>
+
     <span class="chapter">${data.chapter}</span>
+
     <h3>${data.title}</h3>
     <p class="desc">${data.desc}</p>
-    <ul>${data.points.map(p => `<li>${p}</li>`).join("")}</ul>
-    <span class="intent">${data.intent}</span>
+
+    <ul class="feature-list">
+      ${data.points.map(p => `
+        <li>
+          <span class="dot"></span>
+          ${p}
+        </li>
+      `).join("")}
+    </ul>
+
   `;
 }
 
@@ -185,14 +201,10 @@ function flipForward(e) {
   }, 1500);
 }
 
-/* =========================
-   INPUT
-========================= */
-
 rightPage.addEventListener("pointerdown", flipForward, { passive: false });
 
 /* =========================
-   RESET ON RESIZE (IMPORTANT)
+   RESET ON RESIZE
 ========================= */
 
 window.addEventListener("resize", () => {
@@ -200,27 +212,40 @@ window.addEventListener("resize", () => {
   mobileIndex = 0;
   loadPages();
 });
-function renderPage(el, data) {
-  el.innerHTML = `
-    <div class="page-head">
-      <svg class="page-icon">
-        <use href="#${data.icon}"></use>
-      </svg>
-      <span class="chapter">${data.chapter}</span>
-    </div>
 
-    <h3>${data.title}</h3>
-    <p class="desc">${data.desc}</p>
+/* =========================
+   TAP HINT – HIDE AFTER FIRST TAP
+========================= */
 
-    <ul class="feature-list">
-      ${data.points.map(p => `
-        <li>
-          <span class="dot"></span>
-          ${p}
-        </li>
-      `).join("")}
-    </ul>
+document.addEventListener("DOMContentLoaded", () => {
+  const pageHint = document.getElementById("pageHint");
+  if (!rightPage || !pageHint) return;
 
-    <span class="intent">${data.intent}</span>
-  `;
-}
+  let hintUsed = false;
+
+  rightPage.addEventListener("click", () => {
+    if (!hintUsed) {
+      pageHint.style.opacity = "0";
+      pageHint.style.transition = "opacity 0.4s ease";
+      hintUsed = true;
+    }
+  });
+});
+
+  document.addEventListener("DOMContentLoaded", () => {
+    const rightPage = document.getElementById("rightPage");
+    const pageHint = document.getElementById("pageHint");
+
+    if (!rightPage || !pageHint) return;
+
+    let hintUsed = false;
+
+    rightPage.addEventListener("click", () => {
+      if (!hintUsed) {
+        pageHint.style.transition = "opacity 0.4s ease";
+        pageHint.style.opacity = "0";
+        hintUsed = true;
+      }
+    });
+  });
+

@@ -528,39 +528,41 @@
    PAGE TURN HINT
 ========================= */
 
+/* =========================
+   TAP TO TURN — PREMIUM
+========================= */
+
 .page-hint {
   position: absolute;
+  bottom: 18px;
   left: 50%;
-  bottom: -64px;
   transform: translateX(-50%);
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  font-weight: 800;
-  font-size: 0.95rem;
-  color: #ff8c00;
-  opacity: 0.9;
-  animation: hintPulse 2.4s ease-in-out infinite;
+
+  font-size: 0.7rem;
+  letter-spacing: 0.16em;
+  font-weight: 700;
+  text-transform: uppercase;
+
+  color: #c17416;
+  opacity: 0.8;
+
   pointer-events: none;
   user-select: none;
+
+  animation: tapPulse 2.4s ease-in-out infinite;
+  z-index: 8;
 }
 
-.hint-icon {
-  font-size: 1.3rem;
-  animation: tapBounce 1.8s ease-in-out infinite;
+@keyframes tapPulse {
+  0%, 100% { opacity: 0.55; }
+  50% { opacity: 1; }
 }
 
-/* Desktop text */
-@media (min-width: 901px) {
-  .hint-text::after {
-    content: " →";
-  }
-}
-
-/* Mobile text */
+/* Mobile clarity */
 @media (max-width: 900px) {
-  .hint-text {
-    font-size: 1rem;
+  .page-hint {
+    font-size: 0.75rem;
+    bottom: 16px;
   }
 }
 
@@ -873,4 +875,288 @@
   .nav-item.dropdown.open .dropdown-menu {
     display: block;
   }
+}/* =====================================
+   PAGE IMAGE — LOGO (PROMINENT & CLEAN)
+===================================== */
+
+.page-image {
+  width: 100%;
+  height: 110px;                 /* ⬆️ more presence */
+  margin-bottom: 10px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.page-image img {
+  max-width: 96px;               /* ✅ clearly visible */
+  max-height: 96px;
+
+  object-fit: contain;
+  display: block;
+
+  opacity: 1;
+  filter: none;
+
+  transition: transform 0.35s ease;
+}
+
+/* Desktop refinement */
+@media (min-width: 901px) {
+  .page-image {
+    height: 120px;
+  }
+
+  .page-image img {
+    max-width: 104px;
+    max-height: 104px;
+  }
+}
+
+/* Subtle premium hover */
+@media (hover: hover) {
+  .page-image:hover img {
+    transform: scale(1.06);
+  }
+}
+
+/* =====================================
+   PAGE CONTENT ALIGNMENT
+===================================== */
+
+.page {
+  padding: 44px 52px;            /* ⬅️ better side balance */
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+/* =====================================
+   CHAPTER LABEL
+===================================== */
+/* =========================
+   CHAPTER LABEL — DARKER & CLEARER
+========================= */
+
+.chapter {
+  font-size: 0.7rem;
+  font-weight: 800;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+
+  color: #b45309; /* 🔥 darker orange (amber-700) */
+
+  opacity: 1;
+  margin-bottom: 14px;
+}
+.chapter::after {
+  background: #b45309; /* same darker tone */
+}
+@media (max-width: 900px) {
+  .chapter {
+    color: #9a3412; /* slightly deeper for mobile contrast */
+  }
+}
+
+.chapter::after {
+  content: "";
+  display: block;
+  width: 26px;
+  height: 2px;
+  background: #ff8c00;
+  margin-top: 6px;
+  border-radius: 2px;
+}
+
+/* =====================================
+   TITLE & DESCRIPTION
+===================================== */
+
+.page h3 {
+  margin-top: 10px;
+  margin-bottom: 12px;
+
+  font-size: 1.8rem;
+  line-height: 1.25;
+}
+
+.desc {
+  margin-bottom: 20px;
+  max-width: 92%;
+  line-height: 1.65;
+  color: #4a4a4a;
+}
+
+/* =====================================
+   FEATURE LIST
+===================================== */
+
+.feature-list {
+  margin-top: 4px;
+}
+
+.feature-list li {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+/* =====================================
+   INTENT FOOTER (ANCHOR)
+===================================== */
+
+.intent {
+  margin-top: auto;
+  padding-top: 22px;
+
+  font-size: 0.7rem;
+  letter-spacing: 0.06em;
+  font-weight: 600;
+
+  color: #c47a19;
+  opacity: 0.85;
+}
+
+/* =====================================
+   TAP HINT
+===================================== */
+
+.page-hint {
+  bottom: 14px;
+  font-size: 0.75rem;
+  letter-spacing: 0.14em;
+  opacity: 0.75;
+}
+
+/* =====================================
+   MOBILE REFINEMENT
+===================================== */
+
+@media (max-width: 900px) {
+
+  .page-image {
+    height: 96px;
+  }
+
+  .page-image img {
+    max-width: 84px;
+    max-height: 84px;
+  }
+
+  .page {
+    padding: 28px 24px 64px;
+  }
+
+  .page h3 {
+    font-size: 1.55rem;
+  }
+
+  .desc {
+    font-size: 0.95rem;
+  }
+}.page-image {
+  position: relative;
+}
+
+.page-image::after {
+  content: "";
+  position: absolute;
+  bottom: -10px;
+  width: 48px;
+  height: 2px;
+  background: rgba(255, 140, 0, 0.7);
+  border-radius: 2px;
+}
+@media (max-width: 768px) {
+  .chapter {
+    margin-bottom: 16px;
+  }
+}
+.chapter[data-final="true"] {
+  color: #7c2d12;
+  letter-spacing: 0.4em;
+}
+
+
+/* =========================
+   MOBILE — FIX FADED LOGOS
+========================= */
+
+@media (max-width: 900px) {
+
+  .page-image img {
+    opacity: 1 !important;      /* 🔥 force full visibility */
+    filter: none !important;    /* 🔥 remove desaturation */
+    transform: none !important;
+
+    max-width: 80px;            /* slightly bigger for clarity */
+    max-height: 80px;
+  }
+}
+@media (max-width: 900px) {
+
+  .page h3 {
+    color: #111827; /* near-black */
+  }
+
+  .desc {
+    color: #191e26; /* darker gray */
+  }
+
+  .feature-list li {
+    color: #0f131a;
+  }
+
+  .chapter {
+    color: #9a3412; /* darker orange */
+    opacity: 1;
+  }
+
+  .page-hint {
+    color: #9a3412;
+    opacity: 1;
+  }
+}
+@media (max-width: 900px) {
+  .page {
+    background: linear-gradient(
+      180deg,
+      #fdf6eb,
+      #f0e3cf
+    );
+  }
+}
+@media (max-width: 900px) {
+  .page-image {
+    position: relative;
+  }
+
+  .page-image::after {
+    content: "";
+    position: absolute;
+    bottom: -8px;
+    width: 32px;
+    height: 2px;
+    background: #f97316; /* brand orange */
+    border-radius: 2px;
+    opacity: 0.9;
+  }
+}
+@media (max-width: 900px) {
+  .page h3 {
+    font-weight: 800;
+    letter-spacing: -0.01em;
+  }
+}
+@media (max-width: 900px) {
+  .feature-list .dot {
+    width: 7px;
+    height: 7px;
+    box-shadow: 0 0 10px rgba(255,140,0,0.6);
+  }
+}
+.page-hint {
+  font-weight: 700;
+  letter-spacing: 0.14em;
 }

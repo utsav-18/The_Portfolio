@@ -930,6 +930,12 @@ body.dark .cta-glow-btn {
     font-size: 0.75rem;
   }
 }
+@media (max-width: 768px) {
+  .image-badge {
+    bottom: 0;
+    transform: translate(-60%, 55%);
+  }
+}
 
 /* Mobile tweak */
 @media (max-width: 768px) {

@@ -854,42 +854,81 @@ body.dark .cta-glow-btn {
 }
 .image-badge {
   position: absolute;
-  bottom: -68px;
+  bottom: -52px; /* 👈 closer to image */
   left: 50%;
   transform: translateX(-50%);
-  background: rgba(10, 10, 10, 0.85);
-  backdrop-filter: blur(14px);
-  padding: 14px 22px;
-  border-radius: 299px;
+
+  background: linear-gradient(
+    180deg,
+    rgba(20,20,20,0.92),
+    rgba(8,8,8,0.92)
+  );
+
+  padding: 16px 28px;
+  border-radius: 999px;
   text-align: center;
 
-  /* ALWAYS visible */
+  /* Always visible */
   opacity: 1;
   pointer-events: none;
 
+  /* Stronger presence */
   box-shadow:
-    0 12px 30px rgba(0,0,0,0.45),
-    0 0 0 1px rgba(255,140,0,0.15);
+    0 18px 45px rgba(0,0,0,0.65),
+    0 0 0 1px rgba(255,140,0,0.35),
+    0 0 24px rgba(255,140,0,0.25);
 
-  z-index: 5;
+  z-index: 10;
 }
 
-/* Name */
+/* NAME */
 .image-badge strong {
   display: block;
-  font-size: 0.65rem;
+  font-size: 0.95rem; /* 👈 bigger */
   font-weight: 700;
   color: #ffffff;
+  letter-spacing: 0.02em;
   line-height: 1.2;
 }
 
-/* Role */
+/* ROLE */
 .image-badge span {
   display: block;
-  font-size: 0.9rem;
-  font-weight: 500;
+  font-size: 0.85rem;
+  font-weight: 600;
   color: #ff8c00;
-  margin-top: 2px;
+  margin-top: 4px;
+}
+
+/* ===============================
+   DESKTOP EMPHASIS ONLY
+================================ */
+@media (min-width: 1024px) {
+  .image-badge {
+    bottom: -44px;
+    padding: 18px 34px;
+  }
+}
+
+/* ===============================
+   MOBILE REFINEMENT
+================================ */
+@media (max-width: 768px) {
+  .image-badge {
+    bottom: -30px;
+    padding: 12px 22px;
+    box-shadow:
+      0 14px 32px rgba(0,0,0,0.55),
+      0 0 0 1px rgba(255,140,0,0.25);
+  }
+
+  .image-badge strong {
+    font-size: 0.9rem;
+  }
+
+  .image-badge span {
+    font-size: 0.75rem;
+  }
 }
 
 /* Mobile tweak */

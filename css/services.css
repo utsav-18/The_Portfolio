@@ -640,3 +640,237 @@
   0%,100% { opacity: 0.6 }
   50% { opacity: 1 }
 }
+/* ===================================================
+   FINAL FIX — REMOVE EXTRA SPACE BELOW SERVICES BOOK
+   =================================================== */
+
+/* 1️⃣ Reduce section bottom spacing */
+.open-book-section {
+  padding-bottom: 2.5rem !important; /* was 6rem */
+}
+
+/* 2️⃣ Ensure wrapper does not add extra height */
+.book-wrapper {
+  margin-bottom: 0 !important;
+  padding-bottom: 0 !important;
+}
+
+/* 3️⃣ Lock book height only to itself */
+.book {
+  margin-bottom: 0 !important;
+}
+.page-hint,
+.tap-hint {
+  position: absolute;
+  bottom: 18px;          /* ✅ INSIDE the book */
+  left: 50%;
+  transform: translateX(-50%);
+  pointer-events: none;
+}
+
+/* 6️⃣ Mobile safety */
+@media (max-width: 900px) {
+  .open-book-section {
+    padding-bottom: 2rem !important;
+  }
+}
+/* =========================================
+   FIX GAP BETWEEN SERVICES & CERTIFICATIONS
+   ========================================= */
+
+/* Pull Certifications UP */
+.cert-section {
+  margin-top: 0 !important;
+  padding-top: 2.5rem !important; /* reduce this further if needed */
+}
+
+/* Kill any invisible spacer before heading */
+.cert-section::before {
+  display: none !important;
+  content: none !important;
+}
+
+/* Tighten heading spacing */
+.cert-title {
+  margin-top: 0 !important;
+  padding-top: 0 !important;
+}
+/* Remove accidental margin from previous section */
+.open-book-section + section {
+  margin-top: 0 !important;
+}
+/* =====================================================
+   FINAL ABSOLUTE FIX — REMOVE DEAD SPACE BELOW BOOK
+   ===================================================== */
+
+/* 1️⃣ Kill ALL bottom spacing from Services */
+.open-book-section {
+  padding-bottom: 0 !important;
+  margin-bottom: 0 !important;
+  min-height: unset !important;
+}
+
+/* 2️⃣ Ensure wrapper does not add height */
+.book-wrapper {
+  margin-bottom: 0 !important;
+  padding-bottom: 0 !important;
+}
+
+/* 3️⃣ Lock book to its own height only */
+.book {
+  margin-bottom: 0 !important;
+}
+
+/* 4️⃣ FORCE next section to come up */
+.open-book-section + section {
+  margin-top: 0 !important;
+  padding-top: 2rem !important; /* controlled spacing */
+}
+
+/* 5️⃣ Mobile safety */
+@media (max-width: 900px) {
+  .open-book-section {
+    padding-bottom: 0 !important;
+  }
+}
+/* ===============================
+   SERVICES DROPDOWN – NAV STYLE
+================================ */
+
+/* Parent */
+.nav-item.dropdown {
+  position: relative;
+}
+
+/* Services button */
+.dropdown-toggle {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+
+  padding: 10px 16px;
+  border-radius: 10px;
+
+  background: rgba(255, 140, 0, 0.08);
+  border: 1px solid rgba(255, 140, 0, 0.35);
+
+  color: #fff;
+  font-weight: 600;
+  text-decoration: none;
+
+  transition: all 0.25s ease;
+}
+
+/* Hover / active */
+.dropdown-toggle:hover {
+  background: rgba(255, 140, 0, 0.18);
+  box-shadow: 0 8px 24px rgba(255, 140, 0, 0.25);
+}
+
+/* Arrow animation */
+.dropdown-arrow {
+  font-size: 0.7rem;
+  transition: transform 0.25s ease;
+}
+
+.nav-item.dropdown:hover .dropdown-arrow {
+  transform: rotate(180deg);
+}
+
+/* ===============================
+   DROPDOWN MENU
+================================ */
+
+.dropdown-menu {
+  position: absolute;
+  top: calc(100% + 12px);
+  left: 0;
+
+  min-width: 260px;
+  padding: 10px;
+
+  background: #0b0b0b;
+  border: 1px solid rgba(255, 140, 0, 0.25);
+  border-radius: 14px;
+
+  box-shadow:
+    0 20px 40px rgba(0,0,0,0.6),
+    inset 0 0 0 1px rgba(255,255,255,0.03);
+
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(10px);
+
+  transition: all 0.25s ease;
+  z-index: 1000;
+}
+
+/* Show dropdown on hover (desktop) */
+.nav-item.dropdown:hover .dropdown-menu {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+/* Dropdown items */
+.dropdown-menu li {
+  list-style: none;
+}
+
+.dropdown-menu a {
+  display: block;
+  padding: 12px 14px;
+
+  color: #e5e7eb;
+  font-size: 0.95rem;
+  font-weight: 500;
+  text-decoration: none;
+
+  border-radius: 10px;
+  transition: all 0.2s ease;
+}
+
+/* Item hover */
+.dropdown-menu a:hover {
+  background: linear-gradient(
+    135deg,
+    rgba(255,140,0,0.22),
+    rgba(255,69,0,0.22)
+  );
+  color: #fff;
+  transform: translateX(4px);
+}
+
+/* ===============================
+   MOBILE RESPONSIVE DROPDOWN
+================================ */
+
+@media (max-width: 900px) {
+
+  .dropdown-toggle {
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .dropdown-menu {
+    position: static;
+    transform: none;
+    opacity: 1;
+    visibility: visible;
+
+    margin-top: 8px;
+    box-shadow: none;
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.03);
+  }
+
+  /* Hide dropdown by default on mobile */
+  .nav-item.dropdown .dropdown-menu {
+    display: none;
+  }
+
+  /* Toggle open state (JS will add .open) */
+  .nav-item.dropdown.open .dropdown-menu {
+    display: block;
+  }
+}

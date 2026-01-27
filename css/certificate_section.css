@@ -13,7 +13,8 @@
 
 /* CERTIFICATE SECTION */
 .cert-section {
-    padding: 100px 8%;
+    margin-top:-50px ;
+    padding: 50px 4%;
     position: relative;
     background: transparent;
     z-index: 1;
@@ -37,14 +38,14 @@
 .cert-showcase {
     display: flex;
     justify-content: center;
-    gap: 60px;
+    gap: 100px;
     flex-wrap: wrap;
 }
 
 /* CERTIFICATE ITEM */
 .cert-item {
     position: relative;
-    width: 360px;
+    width: 280px;
     transition: transform 0.6s ease, box-shadow 0.6s ease;
     cursor: pointer;
 }
@@ -100,4 +101,14 @@
     .cert-item {
         width: 300px;
     }
+}
+
+.cert-section {
+    position: relative;
+    top: -180px;
+}
+
+.team-section{
+    position: relative;
+    top: -80px;
 }

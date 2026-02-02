@@ -189,3 +189,107 @@
   opacity: 1;
   transform: translateY(0);
 }
+/* ===============================
+   SIMPLE IMAGE SCALE ON HOVER
+================================ */
+
+.case-media {
+  overflow: hidden; /* prevents layout break */
+}
+
+.case-media img {
+  transition: transform 0.5s ease;
+}
+
+@media (hover: hover) {
+  .case-media:hover img {
+    transform: scale(2.5); /* adjust 1.1–1.2 if needed */
+  }
+}
+/* ==============================
+   CASE STUDY IMAGE HOVER FOCUS
+============================== */
+
+.case-media {
+  position: relative;
+  transition: transform 0.45s ease, box-shadow 0.45s ease;
+  z-index: 1;
+}
+
+.case-media img {
+  transition: transform 0.45s ease;
+}
+
+/* Hover effect */
+.case:hover .case-media {
+  transform: scale(1.12) translateY(-6px);
+  z-index: 10;
+  box-shadow:
+    0 40px 120px rgba(0,0,0,0.9),
+    0 0 60px rgba(255, 140, 0, 0.478);
+}
+
+/* Keep image crisp */
+.case:hover .case-media img {
+  transform: scale(1.02);
+}
+
+/* Prevent layout shift */
+.case {
+  overflow: visible;
+}
+
+/* Disable hover zoom on touch devices */
+@media (hover: none) {
+  .case:hover .case-media {
+    transform: none;
+    box-shadow: none;
+  }
+}
+/* ==============================
+   CASE IMAGE FOCUS (DESKTOP + MOBILE)
+============================== */
+
+.case-media {
+  position: relative;
+  transition: transform 0.45s ease, box-shadow 0.45s ease;
+  z-index: 1;
+}
+
+.case-media img {
+  transition: transform 0.45s ease;
+  will-change: transform;
+}
+
+/* Desktop hover */
+@media (hover: hover) {
+  .case:hover .case-media {
+    transform: scale(1.12) translateY(-6px);
+    z-index: 10;
+    box-shadow:
+      0 40px 120px rgba(0,0,0,0.9),
+      0 0 60px rgba(255,140,0,0.35);
+  }
+
+  .case:hover .case-media img {
+    transform: scale(1.02);
+  }
+}
+
+/* Mobile active focus */
+.case-media.is-focused {
+  transform: scale(1.15) translateY(-6px);
+  z-index: 20;
+  box-shadow:
+    0 40px 120px rgba(0,0,0,0.9),
+    0 0 70px rgba(255,140,0,0.45);
+}
+
+.case-media.is-focused img {
+  transform: scale(1.02);
+}
+
+/* Prevent clipping */
+.case {
+  overflow: visible;
+}

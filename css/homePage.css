@@ -1099,7 +1099,7 @@ body.dark .cta-glow-btn {
   );
 
   color: var(--text-main);
-  font-size: 1.5rem;
+  font-size: 1.7rem;
   font-weight: 600;
   letter-spacing: 0.4px;
   text-decoration: none;
@@ -1263,7 +1263,7 @@ body.dark .cta-glow-btn {
     min-width: 220px;
     max-width: 260px;
     padding: 14px 28px;
-    font-size: 0.95rem;
+    font-size: 1.2rem;
   }
 }
 

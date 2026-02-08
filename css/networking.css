@@ -1,7 +1,7 @@
 /* ===== NETWORKING SECTION – FINAL RESPONSIVE VERSION ===== */
 
 .network-pro-section {
-  padding: 80px 6%;
+  padding: 70px 5%;
   background: transparent;
   position: relative;
   z-index: 1;
@@ -16,7 +16,7 @@
 .network-pro-eyebrow {
   color: #ff8c00;
   letter-spacing: 3px;
-  font-size: 13px;
+  font-size: 15px;
   font-weight: 600;
 }
 
@@ -209,5 +209,22 @@
 
   .network-pro-img {
     height: 300px;
+  }
+}
+/* Remove top padding specifically for mobile */
+@media (max-width: 768px) {
+  .network-pro-section {
+    padding-top: 0px !important;
+    padding-bottom: 40px !important;   /* keep bottom spacing normal */
+  }
+
+  .network-pro-header {
+    margin-top: 0px !important;
+    margin-bottom: 30px !important;
+  }
+}
+@media (max-width: 768px) {
+  .network-pro-header h2 {
+    margin-top: 0px !important;
   }
 }

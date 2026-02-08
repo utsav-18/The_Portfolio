@@ -1,1162 +1,304 @@
-/* =========================
-   SECTION
-========================= */
+.services-section {
+  padding: 100px 6%;
+  background: var(--bg-dark);
+}
 
-.open-book-section {
+.services-container {
   max-width: 1200px;
   margin: auto;
-  padding: 6rem 1.5rem;
 }
 
-.book-header {
+.services-header {
   text-align: center;
-  margin-bottom: 3.5rem;
-   position: relative;
-  z-index: 10;   /* 👈 ensures it stays above the book */
-  margin-bottom: 4rem;
+  margin-bottom: 60px;
 }
 
-.eyebrow {
-  color: #ff8c00;
-  letter-spacing: 0.25em;
-  font-size: 0.75rem;
-  font-weight: 700;
-}
-
-.book-header h2 {
-  font-size: clamp(2.4rem, 5vw, 3.6rem);
-  margin: 0.6rem 0;
-}
-
-.book-header p {
-  color: #9ca3af;
-  font-size: 1rem;
-}
-
-/* =========================
-   BOOK WRAPPER
-========================= */
-
-.book-wrapper {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-/* =========================
-   BOOK
-========================= */
-
-.book {
-  position: relative;
-  width: 900px;
-  height: 480px;
-  perspective: 2200px;
-  transform-style: preserve-3d;
-}
-
-/* =========================
-   PAGE BASE
-========================= */
-
-.page {
-  position: absolute;
-  top: 0;
-  width: 50%;
-  height: 100%;
-  padding: 44px;
-
-  /* PURE PAPER — NO SHADOW SOURCE */
-  background: linear-gradient(180deg, #f9f2e6, #efe5d4);
-
-  color: #1e1e1e;
-  border-radius: 16px;
-
-  /* ONLY outer shadow */
-  box-shadow: 0 30px 60px rgba(0,0,0,0.35);
-
-  backface-visibility: hidden;
-}
-
-/* LEFT PAGE */
-.left-page {
-  left: 0;
-  border-radius: 16px 0 0 16px;
-  z-index: 3;
-}
-
-/* RIGHT PAGE */
-.right-page {
-  right: 0;
-  border-radius: 0 16px 16px 0;
-  transform-origin: left center;
-  cursor: pointer;
-  z-index: 4;
-}
-
-/* =========================
-   CONTENT
-========================= */
-
-.chapter {
-  display: inline-block;
-  font-size: 0.65rem;
-  font-weight: 800;
-  letter-spacing: 0.28em;
-  text-transform: uppercase;
-  color: #c17416;
-  margin-bottom: 14px;
-}
-
-.page h3 {
-  font-size: 1.8rem;
-  margin: 0.6rem 0;
-}
-
-.desc {
-  color: #4a4a4a;
-  margin-bottom: 1.2rem;
-}
-
-.page ul {
-  padding-left: 1.2rem;
-}
-
-.page li {
-  margin-bottom: 0.6rem;
-}
-
-.intent {
-  display: inline-block;
-  margin-top: 1.6rem;
-  color: #c47a19;
-  font-size: 0.75rem;
-  font-weight: 600;
-}
-
-/* =========================
-   PAGE STACK (DEPTH)
-========================= */
-
-.page-stack,
-.page-stack.second {
-  position: absolute;
-  border-radius: 16px;
-  z-index: 0;
-}
-
-.page-stack {
-  background: #ede4d2;
-  transform: translateX(6px) translateZ(-30px);
-}
-
-.page-stack.second {
-  background: #e6dcc8;
-  transform: translateX(12px) translateZ(-60px);
-}
-
-/* =========================
-   SPIRAL (LEFT EDGE)
-========================= */
-.book::before {
-  content: "";
-  position: absolute;
-  left: -18px;
-  top: 18px;
-  bottom: 18px;
-  width: 14px;
-  background:
-    repeating-linear-gradient(
-      to bottom,
-      #444 0px,
-      #444 6px,
-      transparent 6px,
-      transparent 14px
-    );
-  border-radius: 8px;
-  box-shadow:
-    inset -2px 0 4px rgba(0,0,0,0.6),
-    2px 0 6px rgba(0,0,0,0.4);
-  z-index: 6;
-}
-@media (min-width: 901px) {
-  .left-page {
-    box-shadow: 0 26px 54px rgba(0,0,0,0.28) !important;
-  }
-}
-/* =========================
-   FLIP SHEET
-========================= */
-.flip-sheet {
-  position: absolute;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  pointer-events: none;
-  transform-origin: 0% 50%;
-  z-index: 5;
-
-  /* 👇 IMPORTANT */
-  opacity: 0;
-  background: none;
-}
-
-.flip-sheet {
-  position: absolute;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background:
-    linear-gradient(to right, rgba(0,0,0,0.18), transparent 45%);
-  transform-origin: 0% 50%;
-  pointer-events: none;
-  z-index: 5;
-}
-.right-page:active {
-  transform: scale(0.995);
-}
-.flip-sheet.turn {
-  opacity: 1;
-  background: linear-gradient(
-    to right,
-    rgba(0,0,0,0.25),
-    rgba(0,0,0,0.12),
-    transparent 60%
-  );
-}
-
-.flip-sheet.turn {
-  animation: pageTurn 1.5s cubic-bezier(.18,.92,.25,1) forwards;
-}
-@keyframes pageTurn {
-  0% {
-    transform: rotateY(0deg);
-    box-shadow: inset -12px 0 20px rgba(0,0,0,0.15);
-  }
-
-  40% {
-    transform: rotateY(-70deg);
-    box-shadow: inset -40px 0 50px rgba(0,0,0,0.35);
-  }
-
-  70% {
-    transform: rotateY(-130deg);
-    box-shadow: inset -20px 0 30px rgba(0,0,0,0.25);
-  }
-
-  100% {
-    transform: rotateY(-180deg);
-    box-shadow: none;
-  }
-}
-
-/* =========================
-   TAP HINT (FIXED & BIG)
-========================= */
-
-.tap-hint {
-  position: absolute;
-  bottom: -52px;
-  left: 50%;
-  transform: translateX(-50%);
-  font-size: 1.4rem; /* 👈 BIG */
-  font-weight: 700;
-  color: #ff8c00;
-  text-align: center;
-}
-
-/* =========================
-   MOBILE OPTIMIZATION
-========================= */
-
-@media (max-width: 900px) {
-
-  .book {
-    width: 100%;
-    height: 480px;
-  }
-
-  .left-page {
-    display: none;
-  }
-
-  .page {
-    width: 100%;
-    left: 0;
-    right: auto;
-    padding: 32px 28px 52px;
-    border-radius: 18px;
-  }
-
-  .right-page {
-    transform-origin: 0% 50%; /* 👈 hinge from spiral */
-  }
-
-  .tap-hint {
-    font-size: 1.6rem; /* 👈 EXTRA BIG ON MOBILE */
-    bottom: -46px;
-  }
-
-  .page h3 {
-    font-size: 1.6rem;
-  }
-
-  .desc,
-  .page li {
-    font-size: 0.95rem;
-  }
-}
-/* =========================
-   CENTER DIVIDER (DESKTOP)
-========================= */
-@media (min-width: 901px) {
-  .book::after {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 50%;
-    width: 10px;
-    height: 100%;
-    transform: translateX(-50%);
-    background: linear-gradient(
-      to right,
-      #cbbfa8,
-      #efe5d4,
-      #cbbfa8
-    );
-    box-shadow:
-      inset 2px 0 4px rgba(0,0,0,0.25),
-      inset -2px 0 4px rgba(255,255,255,0.4);
-    border-radius: 6px;
-    z-index: 6;
-    pointer-events: none;
-  }
-}
-.right-page:active {
-  transform: scale(0.995);
-}
-@media (hover: hover) {
-  .book:hover {
-    transform: rotateX(5deg) rotateZ(-0.4deg);
-    transition: transform 0.6s ease;
-  }
-}
-/* =========================
-   REMOVE SPIRAL — DESKTOP ONLY
-========================= */
-@media (min-width: 901px) {
-  .book::before {
-    display: none !important;
-    content: none !important;
-  }
-}
-@media (min-width: 901px) {
-  .left-page {
-    background:
-      radial-gradient(
-        circle at right center,
-        rgba(0,0,0,0.12),
-        transparent 55%
-      ),
-      linear-gradient(180deg, #f8f1e6, #f1e7d6);
-  }
-  .right-page {
-    background:
-      radial-gradient(
-        circle at left center,
-        rgba(0,0,0,0.12),
-        transparent 55%
-      ),
-      linear-gradient(180deg, #f9f2e6, #efe5d4);
-  }
-}
-@media (min-width: 901px) {
-
- .left-page {
-  box-shadow:
-    0 28px 60px rgba(0,0,0,0.35);
-}
-  .right-page {
-    box-shadow:
-      inset 18px 0 26px rgba(0,0,0,0.12);
-  }
-}
-@media (min-width: 901px) {
-  .book {
-    position: relative;
-    perspective: 2400px;
-    transform-style: preserve-3d;
-    transform: rotateX(4deg);
-  }
-}
-@media (min-width: 901px) {
-
-  .book::after {
-    content: "";
-    position: absolute;
-    top: 16px;
-    bottom: 16px;
-    left: 50%;
-    width: 14px;
-    transform: translateX(-50%);
-
-    background: linear-gradient(
-      to right,
-      rgba(0,0,0,0.25),
-      rgba(255,255,255,0.6),
-      rgba(0,0,0,0.25)
-    );
-
-    border-radius: 8px;
-    opacity: 0.6;
-    z-index: 6;
-    pointer-events: none;
-  }
-
-}
-@media (min-width: 901px) {
-
-  /* LEFT PAGE STACK */
-  .page-stack {
-    position: absolute;
-    inset: 0;
-    background: #e6dcc8;
-    border-radius: 16px;
-    transform: translateX(-22px) translateZ(-40px);
-    box-shadow:
-        inset -3px 0 6px rgba(0,0,0,0.18),
-      0 6px 14px rgba(0,0,0,0.22);
-    z-index: 1;
-  }
-
-  /* RIGHT PAGE STACK */
-  .page-stack.second {
-    background: #dfd4bf;
-    transform: translateX(22px) translateZ(-80px);
-    box-shadow:
-      inset 6px 0 12px rgba(0,0,0,0.3),
-      0 12px 24px rgba(0,0,0,0.25);
-    z-index: 0;
-  }
-
-}
-
-  .right-page {
-    box-shadow:
-      inset 22px 0 28px rgba(0,0,0,0.14),
-      0 30px 60px rgba(0,0,0,0.35);
-  }
-
-
-@media (min-width: 901px) {
-  .book {
-    perspective: 2600px;
-    transform-style: preserve-3d;
-    transform: rotateX(5deg) rotateZ(-0.3deg);
-  }
-
-}
-@media (min-width: 901px) {
-
-  .left-page {
-    transform: rotateY(2.5deg);
-  }
-
-  .right-page {
-    transform: rotateY(-2.5deg);
-  }
-
-}
-@media (min-width: 901px) {
-  .right-page {
-    background:
-      radial-gradient(
-        circle at left center,
-        rgba(0,0,0,0.08),
-        transparent 55%
-      ),
-      linear-gradient(180deg, #f9f2e6, #efe5d4);
-  }
-}
-
-/* =========================
-   🔥 TRANSFORM SANITY RESET
-========================= */
-
-/* BOOK — one transform only */
-@media (min-width: 901px) {
-  .book {
-    transform: rotateX(4deg);
-    transition: transform 0.6s ease;
-  }
-
-  .book:hover {
-    transform: rotateX(6deg);
-  }
-}
-
-/* PAGES — NEVER pre-rotate */
-.left-page,
-.right-page {
-  transform: none !important;
-}
-
-/* RIGHT PAGE — only flips when animated */
-.right-page {
-  transform-origin: left center;
-}
-
-/* REMOVE accidental active scaling conflicts */
-.right-page:active {
-  transform: none;
-}
-
-/* FLIP SHEET controls motion */
-.flip-sheet {
-  transform-origin: 0% 50%;
-  will-change: transform;
-}
-
-/* Prevent hover stacking */
-@media (hover: hover) {
-  .book:hover .left-page,
-  .book:hover .right-page {
-    transform: none !important;
-  }
-}
-/* =========================
-   PAGE TURN HINT
-========================= */
-
-/* =========================
-   TAP TO TURN — PREMIUM
-========================= */
-
-.page-hint {
-  position: absolute;
-  bottom: 18px;
-  left: 50%;
-  transform: translateX(-50%);
-
-  font-size: 0.7rem;
-  letter-spacing: 0.16em;
-  font-weight: 700;
-  text-transform: uppercase;
-
-  color: #c17416;
-  opacity: 0.8;
-
-  pointer-events: none;
-  user-select: none;
-
-  animation: tapPulse 2.4s ease-in-out infinite;
-  z-index: 8;
-}
-
-@keyframes tapPulse {
-  0%, 100% { opacity: 0.55; }
-  50% { opacity: 1; }
-}
-
-/* Mobile clarity */
-@media (max-width: 900px) {
-  .page-hint {
-    font-size: 0.75rem;
-    bottom: 16px;
-  }
-}
-
-/* =========================
-   PREMIUM CONTENT ENHANCEMENTS
-========================= */
-
-.page-head {
-  display: flex;
-  align-items: center;
-  gap: 14px;
+.services-header h2 {
+  font-size: clamp(2rem, 4vw, 2.8rem);
+  color: var(--text-main);
   margin-bottom: 12px;
 }
 
-.page-icon {
-  width: 26px;
-  height: 26px;
-  color: #ff8c00;
-  opacity: 0.9;
+.services-header p {
+  color: var(--text-dim);
+  max-width: 620px;
+  margin: auto;
 }
 
-/* Feature list */
-.feature-list {
-  list-style: none;
-  padding: 0;
-  margin: 1.4rem 0;
+/* GRID */
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 28px;
 }
 
-.feature-list li {
-  display: flex;
-  align-items: flex-start;
-  gap: 10px;
-  margin-bottom: 10px;
-  font-size: 0.95rem;
-  color: #3f3f3f;
-}
-
-/* Elegant bullet */
-.feature-list .dot {
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  background: #ff8c00;
-  margin-top: 7px;
-  flex-shrink: 0;
-  box-shadow: 0 0 6px rgba(255,140,0,0.45);
-}
-
-/* Intent line polish */
-.intent {
-  display: inline-block;
-  margin-top: 1.4rem;
-  font-size: 0.75rem;
-  font-weight: 600;
-  color: #c47a19;
-  letter-spacing: 0.04em;
-}
-.chapter {
-  font-size: 0.65rem;
-  letter-spacing: 0.35em;
-  color: #c17416;
-  opacity: 0.85;
-}
-.page {
-  background:
-    radial-gradient(circle at 30% 20%, rgba(0,0,0,0.04), transparent 40%),
-    linear-gradient(180deg, #f9f2e6, #efe5d4);
-}
-.tap-hint {
-  font-size: 0.85rem;
-  letter-spacing: 0.08em;
-  opacity: 0.85;
-  animation: pulseHint 2.5s ease-in-out infinite;
-}
-
-@keyframes pulseHint {
-  0%,100% { opacity: 0.6 }
-  50% { opacity: 1 }
-}
-/* ===================================================
-   FINAL FIX — REMOVE EXTRA SPACE BELOW SERVICES BOOK
-   =================================================== */
-
-/* 1️⃣ Reduce section bottom spacing */
-.open-book-section {
-  padding-bottom: 2.5rem !important; /* was 6rem */
-}
-
-/* 2️⃣ Ensure wrapper does not add extra height */
-.book-wrapper {
-  margin-bottom: 0 !important;
-  padding-bottom: 0 !important;
-}
-
-/* 3️⃣ Lock book height only to itself */
-.book {
-  margin-bottom: 0 !important;
-}
-.page-hint,
-.tap-hint {
-  position: absolute;
-  bottom: 18px;          /* ✅ INSIDE the book */
-  left: 50%;
-  transform: translateX(-50%);
-  pointer-events: none;
-}
-
-/* 6️⃣ Mobile safety */
-@media (max-width: 900px) {
-  .open-book-section {
-    padding-bottom: 2rem !important;
-  }
-}
-/* =========================================
-   FIX GAP BETWEEN SERVICES & CERTIFICATIONS
-   ========================================= */
-
-/* Pull Certifications UP */
-.cert-section {
-  margin-top: 0 !important;
-  padding-top: 2.5rem !important; /* reduce this further if needed */
-}
-
-/* Kill any invisible spacer before heading */
-.cert-section::before {
-  display: none !important;
-  content: none !important;
-}
-
-/* Tighten heading spacing */
-.cert-title {
-  margin-top: 0 !important;
-  padding-top: 0 !important;
-}
-/* Remove accidental margin from previous section */
-.open-book-section + section {
-  margin-top: 0 !important;
-}
-/* =====================================================
-   FINAL ABSOLUTE FIX — REMOVE DEAD SPACE BELOW BOOK
-   ===================================================== */
-
-/* 1️⃣ Kill ALL bottom spacing from Services */
-.open-book-section {
-  padding-bottom: 0 !important;
-  margin-bottom: 0 !important;
-  min-height: unset !important;
-}
-
-/* 2️⃣ Ensure wrapper does not add height */
-.book-wrapper {
-  margin-bottom: 0 !important;
-  padding-bottom: 0 !important;
-}
-
-/* 3️⃣ Lock book to its own height only */
-.book {
-  margin-bottom: 0 !important;
-}
-
-/* 4️⃣ FORCE next section to come up */
-.open-book-section + section {
-  margin-top: 0 !important;
-  padding-top: 2rem !important; /* controlled spacing */
-}
-
-/* 5️⃣ Mobile safety */
-@media (max-width: 900px) {
-  .open-book-section {
-    padding-bottom: 0 !important;
-  }
-}
-/* ===============================
-   SERVICES DROPDOWN – NAV STYLE
-================================ */
-
-/* Parent */
-.nav-item.dropdown {
+/* CARD */
+.service-card {
   position: relative;
-}
-
-/* Services button */
-.dropdown-toggle {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-
-  padding: 10px 16px;
-  border-radius: 10px;
-
-  background: rgba(255, 140, 0, 0.08);
-  border: 1px solid rgba(255, 140, 0, 0.35);
-
-  color: #fff;
-  font-weight: 600;
-  text-decoration: none;
-
-  transition: all 0.25s ease;
-}
-
-/* Hover / active */
-.dropdown-toggle:hover {
-  background: rgba(255, 140, 0, 0.18);
-  box-shadow: 0 8px 24px rgba(255, 140, 0, 0.25);
-}
-
-/* Arrow animation */
-.dropdown-arrow {
-  font-size: 0.7rem;
-  transition: transform 0.25s ease;
-}
-
-.nav-item.dropdown:hover .dropdown-arrow {
-  transform: rotate(180deg);
-}
-
-/* ===============================
-   DROPDOWN MENU
-================================ */
-
-.dropdown-menu {
-  position: absolute;
-  top: calc(100% + 12px);
-  left: 0;
-
-  min-width: 260px;
-  padding: 10px;
-
-  background: #0b0b0b;
-  border: 1px solid rgba(255, 140, 0, 0.25);
-  border-radius: 14px;
-
-  box-shadow:
-    0 20px 40px rgba(0,0,0,0.6),
-    inset 0 0 0 1px rgba(255,255,255,0.03);
-
-  opacity: 0;
-  visibility: hidden;
-  transform: translateY(10px);
-
-  transition: all 0.25s ease;
-  z-index: 1000;
-}
-
-/* Show dropdown on hover (desktop) */
-.nav-item.dropdown:hover .dropdown-menu {
+  height: 320px;
+  border-radius: 18px;
+  overflow: hidden;
+  background: var(--bg-card);
+  transform: translateY(40px);
   opacity: 1;
-  visibility: visible;
-  transform: translateY(0);
+  transition: transform 0.6s ease, opacity 0.6s ease;
 }
 
-/* Dropdown items */
-.dropdown-menu li {
-  list-style: none;
+/* IMAGE */
+.service-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.7s ease;
 }
 
-.dropdown-menu a {
-  display: block;
-  padding: 12px 14px;
-
-  color: #e5e7eb;
-  font-size: 0.95rem;
-  font-weight: 500;
-  text-decoration: none;
-
-  border-radius: 10px;
-  transition: all 0.2s ease;
-}
-
-/* Item hover */
-.dropdown-menu a:hover {
+/* OVERLAY */
+.service-card .overlay {
+  position: absolute;
+  inset: 0;
   background: linear-gradient(
-    135deg,
-    rgba(255,140,0,0.22),
-    rgba(255,69,0,0.22)
+    to top,
+    rgba(5,5,5,0.9),
+    rgba(5,5,5,0.4),
+    rgba(5,5,5,0.1)
   );
-  color: #fff;
-  transform: translateX(4px);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 26px;
 }
 
-/* ===============================
-   MOBILE RESPONSIVE DROPDOWN
-================================ */
+/* TEXT */
+.service-card h3 {
+  font-size: 1.25rem;
+  font-weight: 700;
+  margin-bottom: 8px;
+  transform: translateY(20px);
+  opacity: 0;
+  transition: 0.5s ease;
+}
 
-@media (max-width: 900px) {
+.service-card p {
+  font-size: 0.95rem;
+  color: var(--text-dim);
+  transform: translateY(20px);
+  opacity: 0;
+  transition: 0.6s ease;
+}
+
+/* HOVER */
+.service-card:hover img {
+  transform: scale(1.08);
+}
+
+.service-card:hover {
+  transform: translateY(-8px);
+  box-shadow: var(--glow-shadow);
+}
+
+.service-card:hover h3,
+.service-card:hover p {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+/* BORDER GLOW */
+.service-card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 18px;
+  border: 1px solid rgba(255, 140, 0, 0.35);
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+.service-card:hover::after {
+  opacity: 1;
+}
+
+/* SCROLL ACTIVE */
+.service-card.visible {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+/* MOBILE */
+@media (max-width: 768px) {
+  .service-card {
+    height: 260px;
+  }
+
+  .service-card h3,
+  .service-card p {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+/* =====================================
+   DESKTOP ONLY – SERVICES DROPDOWN
+===================================== */
+
+@media (min-width: 769px) {
+
+  nav {
+    z-index: 9999;
+  }
+
+  .nav-item.dropdown {
+    position: relative;
+  }
 
   .dropdown-toggle {
-    width: 100%;
-    justify-content: space-between;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    cursor: pointer;
+  }
+
+  .dropdown-arrow {
+    font-size: 0.7rem;
+    transition: transform 0.3s ease;
+  }
+
+  .dropdown-menu {
+    position: absolute;
+    top: calc(100% + 14px);
+    left: 0;
+
+    min-width: 280px;
+    padding: 10px 0;
+
+    background: rgba(5, 5, 5, 0.96);
+    backdrop-filter: blur(16px);
+
+    border-radius: 14px;
+    border: 1px solid rgba(255, 140, 0, 0.25);
+
+    box-shadow:
+      0 25px 60px rgba(0, 0, 0, 0.65),
+      inset 0 0 0 1px rgba(255, 140, 0, 0.15);
+
+    list-style: none;
+
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(12px);
+
+    transition: all 0.3s ease;
+    z-index: 10000;
+  }
+
+  .dropdown-menu li a {
+    display: block;
+    padding: 10px 18px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: var(--text-dim);
+    text-decoration: none;
+    white-space: nowrap;
+    transition: all 0.25s ease;
+  }
+
+  .dropdown-menu li a:hover {
+    color: var(--primary-orange);
+    background: linear-gradient(
+      90deg,
+      rgba(255, 140, 0, 0.18),
+      rgba(255, 69, 0, 0.05)
+    );
+  }
+
+  /* SHOW ON HOVER */
+  .nav-item.dropdown:hover .dropdown-menu {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+  }
+
+  /* Rotate arrow */
+  .nav-item.dropdown:hover .dropdown-arrow {
+    transform: rotate(180deg);
+  }
+}
+/* =====================================
+   MOBILE – SERVICES AS NORMAL LIST
+===================================== */
+
+@media (max-width: 768px) {
+
+  .dropdown-arrow {
+    display: none;
   }
 
   .dropdown-menu {
     position: static;
-    transform: none;
     opacity: 1;
     visibility: visible;
+    transform: none;
 
-    margin-top: 8px;
+    background: transparent;
+    backdrop-filter: none;
+    border: none;
     box-shadow: none;
-    border-radius: 12px;
-    background: rgba(255, 255, 255, 0.03);
+
+    padding: 0;
+    margin-top: 6px;
   }
 
-  /* Hide dropdown by default on mobile */
-  .nav-item.dropdown .dropdown-menu {
-    display: none;
-  }
-
-  /* Toggle open state (JS will add .open) */
-  .nav-item.dropdown.open .dropdown-menu {
-    display: block;
-  }
-}/* =====================================
-   PAGE IMAGE — LOGO (PROMINENT & CLEAN)
-===================================== */
-
-.page-image {
-  width: 100%;
-  height: 110px;                 /* ⬆️ more presence */
-  margin-bottom: 10px;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.page-image img {
-  max-width: 96px;               /* ✅ clearly visible */
-  max-height: 96px;
-
-  object-fit: contain;
-  display: block;
-
-  opacity: 1;
-  filter: none;
-
-  transition: transform 0.35s ease;
-}
-
-/* Desktop refinement */
-@media (min-width: 901px) {
-  .page-image {
-    height: 120px;
-  }
-
-  .page-image img {
-    max-width: 104px;
-    max-height: 104px;
-  }
-}
-
-/* Subtle premium hover */
-@media (hover: hover) {
-  .page-image:hover img {
-    transform: scale(1.06);
-  }
-}
-
-/* =====================================
-   PAGE CONTENT ALIGNMENT
-===================================== */
-
-.page {
-  padding: 44px 52px;            /* ⬅️ better side balance */
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-}
-
-/* =====================================
-   CHAPTER LABEL
-===================================== */
-/* =========================
-   CHAPTER LABEL — DARKER & CLEARER
-========================= */
-
-.chapter {
-  font-size: 0.7rem;
-  font-weight: 800;
-  letter-spacing: 0.3em;
-  text-transform: uppercase;
-
-  color: #b45309; /* 🔥 darker orange (amber-700) */
-
-  opacity: 1;
-  margin-bottom: 14px;
-}
-.chapter::after {
-  background: #b45309; /* same darker tone */
-}
-@media (max-width: 900px) {
-  .chapter {
-    color: #9a3412; /* slightly deeper for mobile contrast */
-  }
-}
-
-.chapter::after {
-  content: "";
-  display: block;
-  width: 26px;
-  height: 2px;
-  background: #ff8c00;
-  margin-top: 6px;
-  border-radius: 2px;
-}
-
-/* =====================================
-   TITLE & DESCRIPTION
-===================================== */
-
-.page h3 {
-  margin-top: 10px;
-  margin-bottom: 12px;
-
-  font-size: 1.8rem;
-  line-height: 1.25;
-}
-
-.desc {
-  margin-bottom: 20px;
-  max-width: 92%;
-  line-height: 1.65;
-  color: #4a4a4a;
-}
-
-/* =====================================
-   FEATURE LIST
-===================================== */
-
-.feature-list {
-  margin-top: 4px;
-}
-
-.feature-list li {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-
-/* =====================================
-   INTENT FOOTER (ANCHOR)
-===================================== */
-
-.intent {
-  margin-top: auto;
-  padding-top: 22px;
-
-  font-size: 0.7rem;
-  letter-spacing: 0.06em;
-  font-weight: 600;
-
-  color: #c47a19;
-  opacity: 0.85;
-}
-
-/* =====================================
-   TAP HINT
-===================================== */
-
-.page-hint {
-  bottom: 14px;
-  font-size: 0.75rem;
-  letter-spacing: 0.14em;
-  opacity: 0.75;
-}
-
-/* =====================================
-   MOBILE REFINEMENT
-===================================== */
-
-@media (max-width: 900px) {
-
-  .page-image {
-    height: 96px;
-  }
-
-  .page-image img {
-    max-width: 84px;
-    max-height: 84px;
-  }
-
-  .page {
-    padding: 28px 24px 64px;
-  }
-
-  .page h3 {
-    font-size: 1.55rem;
-  }
-
-  .desc {
+  .dropdown-menu li a {
+    padding: 8px 0;
     font-size: 0.95rem;
+    color: var(--text-dim);
   }
-}.page-image {
+}
+
+/* service section top */
+.pro-services-section {
   position: relative;
+  z-index: 10;
+  padding-top: 80px !important;
 }
 
-.page-image::after {
-  content: "";
-  position: absolute;
-  bottom: -10px;
-  width: 48px;
-  height: 2px;
-  background: rgba(255, 140, 0, 0.7);
-  border-radius: 2px;
-}
-@media (max-width: 768px) {
-  .chapter {
-    margin-bottom: 16px;
-  }
-}
-.chapter[data-final="true"] {
-  color: #7c2d12;
-  letter-spacing: 0.4em;
+.pro-services-header {
+  position: relative;
+  z-index: 20;
+  text-align: center;
+  margin-bottom: 60px;
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
 }
 
-
-/* =========================
-   MOBILE — FIX FADED LOGOS
-========================= */
-
-@media (max-width: 900px) {
-
-  .page-image img {
-    opacity: 1 !important;      /* 🔥 force full visibility */
-    filter: none !important;    /* 🔥 remove desaturation */
-    transform: none !important;
-
-    max-width: 80px;            /* slightly bigger for clarity */
-    max-height: 80px;
-  }
+.pro-services-header h2 {
+  font-size: 1.5rem;
+  color: #ffffff !important;
+  margin-bottom: 10px;
+  display: block !important;
 }
-@media (max-width: 900px) {
 
-  .page h3 {
-    color: #111827; /* near-black */
-  }
-
-  .desc {
-    color: #191e26; /* darker gray */
-  }
-
-  .feature-list li {
-    color: #0f131a;
-  }
-
-  .chapter {
-    color: #9a3412; /* darker orange */
-    opacity: 1;
-  }
-
-  .page-hint {
-    color: #9a3412;
-    opacity: 1;
-  }
+.services-sub {
+  color: #bbbbbb !important;
+  font-size: 1.2rem;
+  display: block !important;
 }
-@media (max-width: 900px) {
-  .page {
-    background: linear-gradient(
-      180deg,
-      #fdf6eb,
-      #f0e3cf
-    );
-  }
+#services {
+  padding-top: 80px;
+  padding-bottom: 300px !important;
 }
-@media (max-width: 900px) {
-  .page-image {
-    position: relative;
-  }
-
-  .page-image::after {
-    content: "";
-    position: absolute;
-    bottom: -8px;
-    width: 32px;
-    height: 2px;
-    background: #f97316; /* brand orange */
-    border-radius: 2px;
-    opacity: 0.9;
-  }
+.section-tag {
+  display: inline-block;
+  padding: 6px 14px;
+  border-radius: 20px;
+  background: rgba(255, 122, 0, 0.15);
+  color: #ff7a00;
+  font-size: 12px;
+  letter-spacing: 1px;
+  margin-bottom: 10px;
 }
-@media (max-width: 900px) {
-  .page h3 {
-    font-weight: 800;
-    letter-spacing: -0.01em;
-  }
+.pro-services-header {
+   display: none;
 }
-@media (max-width: 900px) {
-  .feature-list .dot {
-    width: 7px;
-    height: 7px;
-    box-shadow: 0 0 10px rgba(255,140,0,0.6);
-  }
-}
-.page-hint {
-  font-weight: 700;
-  letter-spacing: 0.14em;
+.pro-service-card {
+  aspect-ratio: 4 / 3;
 }

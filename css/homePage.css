@@ -1089,7 +1089,7 @@ body.dark .cta-glow-btn {
   align-items: center;
   gap: 14px;
 
-  padding: 16px 34px;
+  padding: 16px 30px;
   border-radius: 999px;
 
   background: linear-gradient(
@@ -1099,7 +1099,7 @@ body.dark .cta-glow-btn {
   );
 
   color: var(--text-main);
-  font-size: 1.7rem;
+  font-size: 1.2rem;
   font-weight: 600;
   letter-spacing: 0.4px;
   text-decoration: none;
@@ -1262,7 +1262,7 @@ body.dark .cta-glow-btn {
   .dp-cta-btn {
     min-width: 220px;
     max-width: 260px;
-    padding: 14px 28px;
+    padding: 8px 15px;
     font-size: 1.2rem;
   }
 }

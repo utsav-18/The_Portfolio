@@ -1176,7 +1176,7 @@ body.dark .cta-glow-btn {
 
   .dp-cta-btn {
     padding: 14px 28px;
-    font-size: 0.95rem;
+    font-size: 1.2rem;
   }
 
   .dp-cta-arrow {
@@ -1262,8 +1262,8 @@ body.dark .cta-glow-btn {
   .dp-cta-btn {
     min-width: 220px;
     max-width: 260px;
-    padding: 8px 15px;
-    font-size: 1.2rem;
+    padding: 6px 12px;
+    font-size: 1.5rem;
   }
 }
 

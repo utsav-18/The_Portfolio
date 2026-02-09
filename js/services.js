@@ -1,15 +1,19 @@
-const serviceCards = document.querySelectorAll("[data-animate]");
+(function () {
+  const serviceCards = document.querySelectorAll("[data-animate]");
 
-const observer = new IntersectionObserver(
-  entries => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add("visible");
-        observer.unobserve(entry.target);
-      }
-    });
-  },
-  { threshold: 0.2 }
-);
+  if (!serviceCards.length) return;
 
-serviceCards.forEach(card => observer.observe(card));
+  const serviceObserver = new IntersectionObserver(
+    entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("visible");
+          serviceObserver.unobserve(entry.target);
+        }
+      });
+    },
+    { threshold: 0.2 }
+  );
+
+  serviceCards.forEach(card => serviceObserver.observe(card));
+})();

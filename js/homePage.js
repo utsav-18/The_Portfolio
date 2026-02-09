@@ -1,160 +1,173 @@
-// Canvas setup
+// ===== PARTICLE BACKGROUND SETUP =====
 const canvas = document.getElementById('particleCanvas');
-const ctx = canvas.getContext('2d');
 
-let particles = [];
-const particleCount = 90;
-const maxDistance = 150;
-let mouse = { x: null, y: null, radius: 150 };
+if (canvas) {
 
-function resizeCanvas() {
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
-    initParticles();
-}
+    const ctx = canvas.getContext('2d');
 
-class Particle {
-    constructor() {
-        this.reset();
-        this.x = Math.random() * canvas.width;
-        this.y = Math.random() * canvas.height;
+    let particles = [];
+    const particleCount = 90;
+    const maxDistance = 150;
+    let mouse = { x: null, y: null, radius: 150 };
+
+    function resizeCanvas() {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+        initParticles();
     }
 
-    reset() {
-        this.vx = (Math.random() - 0.5) * 0.8;
-        this.vy = (Math.random() - 0.5) * 0.8;
-        this.radius = Math.random() * 2 + 1;
-        this.opacity = Math.random() * 0.5 + 0.3;
-    }
+    class Particle {
+        constructor() {
+            this.reset();
+            this.x = Math.random() * canvas.width;
+            this.y = Math.random() * canvas.height;
+        }
 
-    update() {
-        this.x += this.vx;
-        this.y += this.vy;
+        reset() {
+            this.vx = (Math.random() - 0.5) * 0.8;
+            this.vy = (Math.random() - 0.5) * 0.8;
+            this.radius = Math.random() * 2 + 1;
+            this.opacity = Math.random() * 0.5 + 0.3;
+        }
 
-        if (this.x < 0 || this.x > canvas.width) this.vx *= -1;
-        if (this.y < 0 || this.y > canvas.height) this.vy *= -1;
+        update() {
+            this.x += this.vx;
+            this.y += this.vy;
 
-        if (mouse.x !== null && mouse.y !== null) {
-            const dx = mouse.x - this.x;
-            const dy = mouse.y - this.y;
-            const distance = Math.sqrt(dx * dx + dy * dy);
+            if (this.x < 0 || this.x > canvas.width) this.vx *= -1;
+            if (this.y < 0 || this.y > canvas.height) this.vy *= -1;
 
-            if (distance < mouse.radius) {
-                const force = (mouse.radius - distance) / mouse.radius;
-                const angle = Math.atan2(dy, dx);
-                this.vx -= Math.cos(angle) * force * 0.3;
-                this.vy -= Math.sin(angle) * force * 0.3;
+            if (mouse.x !== null && mouse.y !== null) {
+                const dx = mouse.x - this.x;
+                const dy = mouse.y - this.y;
+                const distance = Math.sqrt(dx * dx + dy * dy);
+
+                if (distance < mouse.radius) {
+                    const force = (mouse.radius - distance) / mouse.radius;
+                    const angle = Math.atan2(dy, dx);
+                    this.vx -= Math.cos(angle) * force * 0.3;
+                    this.vy -= Math.sin(angle) * force * 0.3;
+                }
+            }
+
+            this.vx *= 0.995;
+            this.vy *= 0.995;
+
+            const speed = Math.sqrt(this.vx * this.vx + this.vy * this.vy);
+            if (speed < 0.3) {
+                const angle = Math.random() * Math.PI * 2;
+                this.vx = Math.cos(angle) * 0.5;
+                this.vy = Math.sin(angle) * 0.5;
+            }
+
+            if (speed > 2) {
+                this.vx = (this.vx / speed) * 2;
+                this.vy = (this.vy / speed) * 2;
             }
         }
 
-        this.vx *= 0.995;
-        this.vy *= 0.995;
+        draw() {
+            ctx.beginPath();
+            ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+            ctx.fillStyle = `rgba(255, 140, 0, ${this.opacity})`;
+            ctx.fill();
 
-        const speed = Math.sqrt(this.vx * this.vx + this.vy * this.vy);
-        if (speed < 0.3) {
-            const angle = Math.random() * Math.PI * 2;
-            this.vx = Math.cos(angle) * 0.5;
-            this.vy = Math.sin(angle) * 0.5;
-        }
-
-        if (speed > 2) {
-            this.vx = (this.vx / speed) * 2;
-            this.vy = (this.vy / speed) * 2;
+            ctx.shadowBlur = 10;
+            ctx.shadowColor = 'rgba(255, 140, 0, 0.5)';
+            ctx.fill();
+            ctx.shadowBlur = 0;
         }
     }
 
-    draw() {
-        ctx.beginPath();
-        ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(255, 140, 0, ${this.opacity})`;
-        ctx.fill();
-
-        ctx.shadowBlur = 10;
-        ctx.shadowColor = 'rgba(255, 140, 0, 0.5)';
-        ctx.fill();
-        ctx.shadowBlur = 0;
+    function initParticles() {
+        particles = [];
+        for (let i = 0; i < particleCount; i++) {
+            particles.push(new Particle());
+        }
     }
-}
 
-function initParticles() {
-    particles = [];
-    for (let i = 0; i < particleCount; i++) {
-        particles.push(new Particle());
-    }
-}
+    function drawConnections() {
+        for (let i = 0; i < particles.length; i++) {
+            for (let j = i + 1; j < particles.length; j++) {
+                const dx = particles[i].x - particles[j].x;
+                const dy = particles[i].y - particles[j].y;
+                const distance = Math.sqrt(dx * dx + dy * dy);
 
-function drawConnections() {
-    for (let i = 0; i < particles.length; i++) {
-        for (let j = i + 1; j < particles.length; j++) {
-            const dx = particles[i].x - particles[j].x;
-            const dy = particles[i].y - particles[j].y;
-            const distance = Math.sqrt(dx * dx + dy * dy);
-
-            if (distance < maxDistance) {
-                const opacity = (1 - distance / maxDistance) * 0.3;
-                ctx.beginPath();
-                ctx.moveTo(particles[i].x, particles[i].y);
-                ctx.lineTo(particles[j].x, particles[j].y);
-                ctx.strokeStyle = `rgba(255, 69, 0, ${opacity})`;
-                ctx.lineWidth = 0.5;
-                ctx.stroke();
+                if (distance < maxDistance) {
+                    const opacity = (1 - distance / maxDistance) * 0.3;
+                    ctx.beginPath();
+                    ctx.moveTo(particles[i].x, particles[i].y);
+                    ctx.lineTo(particles[j].x, particles[j].y);
+                    ctx.strokeStyle = `rgba(255, 69, 0, ${opacity})`;
+                    ctx.lineWidth = 0.5;
+                    ctx.stroke();
+                }
             }
         }
     }
-}
 
-function animate() {
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    function animate() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-    particles.forEach(particle => {
-        particle.update();
-        particle.draw();
+        particles.forEach(particle => {
+            particle.update();
+            particle.draw();
+        });
+
+        drawConnections();
+        requestAnimationFrame(animate);
+    }
+
+    canvas.addEventListener('mousemove', e => {
+        mouse.x = e.clientX;
+        mouse.y = e.clientY;
     });
 
-    drawConnections();
-    requestAnimationFrame(animate);
+    canvas.addEventListener('mouseleave', () => {
+        mouse.x = null;
+        mouse.y = null;
+    });
+
+    window.addEventListener('resize', resizeCanvas);
+
+    resizeCanvas();
+    animate();
 }
 
-canvas.addEventListener('mousemove', e => {
-    mouse.x = e.clientX;
-    mouse.y = e.clientY;
-});
+// ===== NAVIGATION MENU LOGIC =====
 
-canvas.addEventListener('mouseleave', () => {
-    mouse.x = null;
-    mouse.y = null;
-});
-
-window.addEventListener('resize', resizeCanvas);
-resizeCanvas();
-animate();
-
-
-// Mobile menu toggle
 const menuToggle = document.getElementById('menuToggle');
 const navLinks = document.getElementById('navLinks');
-const navHeight = document.querySelector('nav').offsetHeight;
+const navElement = document.querySelector('nav');
 
-menuToggle.addEventListener('click', () => {
-    menuToggle.classList.toggle('active');
-    navLinks.classList.toggle('active');
-});
+let navHeight = 0;
 
+if (navElement) {
+    navHeight = navElement.offsetHeight;
+}
 
-// ✅ FIXED NAV CLICK LOGIC (ONLY CHANGE)
+// Toggle menu
+if (menuToggle && navLinks) {
+    menuToggle.addEventListener('click', () => {
+        menuToggle.classList.toggle('active');
+        navLinks.classList.toggle('active');
+    });
+}
+
+// Smooth scroll links
 document.querySelectorAll('.nav-links a').forEach(link => {
     link.addEventListener('click', e => {
+
         const href = link.getAttribute('href');
 
-        // Allow normal page navigation (contact.html)
-        if (!href.startsWith('#')) {
+        if (!href || !href.startsWith('#')) {
             return;
         }
 
-        // Smooth scroll only for section links
         e.preventDefault();
 
         const targetSection = document.querySelector(href);
+
         if (targetSection) {
             const targetPosition =
                 targetSection.getBoundingClientRect().top +
@@ -167,22 +180,25 @@ document.querySelectorAll('.nav-links a').forEach(link => {
             });
         }
 
-        menuToggle.classList.remove('active');
-        navLinks.classList.remove('active');
+        if (menuToggle && navLinks) {
+            menuToggle.classList.remove('active');
+            navLinks.classList.remove('active');
+        }
     });
 });
 
-
 // Close menu when clicking outside
-document.addEventListener('click', e => {
-    if (!navLinks.contains(e.target) && !menuToggle.contains(e.target)) {
-        menuToggle.classList.remove('active');
-        navLinks.classList.remove('active');
-    }
-});
+if (menuToggle && navLinks) {
+    document.addEventListener('click', e => {
+        if (!navLinks.contains(e.target) && !menuToggle.contains(e.target)) {
+            menuToggle.classList.remove('active');
+            navLinks.classList.remove('active');
+        }
+    });
+}
 
+// ===== CTA BUTTON ANIMATION =====
 
-// button reusable js
 document.querySelectorAll('.cta-glow-btn').forEach(btn => {
     btn.addEventListener('mousedown', () => {
         btn.style.transform = 'scale(0.97)';
@@ -197,29 +213,28 @@ document.querySelectorAll('.cta-glow-btn').forEach(btn => {
     });
 });
 
+// ===== WHATSAPP WIDGET LOGIC =====
 
+const fab = document.querySelector('.wa-fab');
+const popup = document.querySelector('.wa-popup');
+const closeBtn = document.querySelector('.wa-close');
 
+if (fab && popup) {
+    fab.addEventListener('click', () => {
+        popup.classList.toggle('active');
+    });
+}
 
-// wastapp button integration JS is from here
-(() => {
-  const fab = document.querySelector('.wa-fab');
-  const popup = document.querySelector('.wa-popup');
-  const closeBtn = document.querySelector('.wa-close');
+if (closeBtn && popup) {
+    closeBtn.addEventListener('click', () => {
+        popup.classList.remove('active');
+    });
+}
 
-  fab.addEventListener('click', () => {
-    popup.classList.toggle('active');
-  });
-
-  closeBtn.addEventListener('click', () => {
-    popup.classList.remove('active');
-  });
-
-  // Close when clicking outside
-  document.addEventListener('click', (e) => {
-    if (!e.target.closest('.wa-widget')) {
-      popup.classList.remove('active');
-    }
-  });
-})();
-
-
+if (popup) {
+    document.addEventListener('click', (e) => {
+        if (!e.target.closest('.wa-widget')) {
+            popup.classList.remove('active');
+        }
+    });
+}

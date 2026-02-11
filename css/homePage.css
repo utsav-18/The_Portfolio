@@ -936,6 +936,16 @@ body.dark .cta-glow-btn {
     transform: translate(-60%, 55%);
   }
 }
+.dp-cta-wrapper {
+  position: relative;
+  z-index: 9999 !important;
+}
+
+.dp-cta-btn {
+  position: relative;
+  z-index: 9999 !important;
+  pointer-events: auto !important;
+}
 
 /* Mobile tweak */
 @media (max-width: 768px) {
@@ -1438,4 +1448,84 @@ body.dark .cta-glow-btn {
   .nav-links li ul {
       display: none !important;
   }
+}
+
+.team-section {
+   padding: 80px 6%;
+}
+.team-carousel {
+   margin-bottom: 60px;
+}
+/* Remove bottom gap after team section on mobile */
+@media (max-width: 768px) {
+
+  .team-section,
+  .team-container,
+  .team-carousel {
+    padding-bottom: 0 !important;
+    margin-bottom: 0 !important;
+  }
+
+  /* Fix spacing of dots */
+  .team-dots {
+    margin-bottom: 10px !important;
+  }
+
+  /* Pull CTA button closer */
+  .dp-cta-wrapper {
+    margin-top: 10px !important;
+  }
+}
+@media (max-width: 768px) {
+
+  .team-section {
+    padding-bottom: 0 !important;
+  }
+
+  .team-wrapper {
+    margin-bottom: 0 !important;
+  }
+
+  .team-slider {
+    margin-bottom: 0 !important;
+  }
+
+  .carousel-dots {
+    margin-bottom: 10px !important;
+  }
+
+}
+/* ===== HARD FIX: SERVICES → CERTIFICATES VISIBILITY ===== */
+
+/* Force proper end of services section */
+.services-section {
+  padding-bottom: 80px !important;
+  margin-bottom: 0 !important;
+  position: relative !important;
+  z-index: 1 !important;
+}
+
+/* Ensure CTA sits between them properly */
+.dp-cta-wrapper {
+  margin-top: 0px !important;
+  margin-bottom: 40px !important;
+  position: relative !important;
+  z-index: 10 !important;
+}
+
+/* Certificates must start clearly below */
+.cert-section {
+  padding-top: 40px !important;
+  margin-top: 0 !important;
+  position: relative !important;
+  z-index: 2 !important;
+}
+
+/* Absolutely force title visibility */
+.cert-title {
+  display: block !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+  position: relative !important;
+  z-index: 5 !important;
 }

@@ -117,6 +117,43 @@
                 0 18px 45px rgba(255,140,0,0.55),
                 0 0 25px rgba(255,140,0,0.6);
         }
+        .form-group select {
+    width: 100%;
+    padding: 13px 14px;
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.2);
+    border-radius: 12px;
+    color: #fff;
+    font-size: 0.95rem;
+    outline: none;
+
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='white'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 12px center;
+    background-size: 18px;
+}
+/* Fix dropdown option panel */
+.form-group select option {
+    background: #0f0f0f;
+    color: white;
+    padding: 12px;
+}
+
+/* Limit dropdown height */
+.form-group select {
+    max-height: 200px;
+    overflow-y: auto;
+}
+@media (max-width: 768px) {
+  .form-group select {
+      font-size: 16px; /* Prevent iOS zoom on focus */
+  }
+}
+
     </style>
 </head>
 
@@ -168,24 +205,18 @@
             </div>
 
             <!-- SERVICE REQUIRED (TYPE + SELECT) -->
-            <div class="form-group">
-                <input
-                    type="text"
-                    id="serviceRequired"
-                    list="services"
-                    placeholder="Service Required (select or type)"
-                    required
-                >
-                <datalist id="services">
-                    <option value="Digital Marketing">
-                    <option value="Paid Ads">
-                    <option value="SEO">
-                    <option value="Website Development">
-                    <option value="Brand Strategy">
-                    <option value="Social Media Management">
-                    <option value="Other">
-                </datalist>
-            </div>
+          <div class="form-group">
+    <select id="serviceRequired" required>
+        <option value="" disabled selected hidden>Service Required</option>
+        <option value="Digital Marketing">Digital Marketing</option>
+        <option value="Paid Ads">Paid Ads</option>
+        <option value="SEO">SEO</option>
+        <option value="Website Development">Website Development</option>
+        <option value="Brand Strategy">Brand Strategy</option>
+        <option value="Social Media Management">Social Media Management</option>
+        <option value="Other">Other</option>
+    </select>
+</div>
 
             <div class="form-group">
                 <input type="date" id="date" required>

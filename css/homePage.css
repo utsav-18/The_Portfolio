@@ -1433,3 +1433,9 @@ body.dark .cta-glow-btn {
 .hero-desc {
   margin-bottom: 2.2rem;
 }
+/* Disable services dropdown only on mobile */
+@media (max-width: 768px) {
+  .nav-links li ul {
+      display: none !important;
+  }
+}

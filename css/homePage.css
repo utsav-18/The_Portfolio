@@ -1568,7 +1568,7 @@ body.dark .cta-glow-btn {
   }
 
   .dp-cta-wrapper {
-    margin-top: -10px !important;
+    margin-top: -30px !important;
     margin-bottom: 8px !important;
   }
 
@@ -1607,4 +1607,26 @@ body.dark .cta-glow-btn {
 
 .dp-cta-wrapper {
   margin-bottom: 6px !important;  /* reduce space under button */
+}
+@media (max-width: 768px) {
+  .network-pro-section {
+    padding-top: 10px !important;
+  }
+}
+@media (max-width: 768px) {
+  .dp-cta-wrapper {
+    margin-top: -60px !important;   /* stronger upward shift */
+    margin-bottom: 10px !important;
+  }
+
+  /* Also tighten gap from team carousel */
+  .team-carousel,
+  .team-section {
+    margin-bottom: 0px !important;
+    padding-bottom: 0px !important;
+  }
+
+  .team-dots {
+    margin-bottom: 6px !important;
+  }
 }

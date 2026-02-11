@@ -1529,3 +1529,82 @@ body.dark .cta-glow-btn {
   position: relative !important;
   z-index: 5 !important;
 }
+/* ===== ULTRA TIGHT GAP BETWEEN SERVICES → CTA → CERTIFICATES ===== */
+
+.services-section {
+  padding-bottom: 0px !important;
+  margin-bottom: 0px !important;
+}
+
+.services-container {
+  padding-bottom: 0px !important;
+  margin-bottom: 0px !important;
+}
+
+.services-grid {
+  margin-bottom: -10px !important;  /* pulls CTA upward */
+  padding-bottom: 0px !important;
+}
+
+.dp-cta-wrapper {
+  margin-top: 0px !important;
+  margin-bottom: 5px !important;    /* almost touching */
+}
+
+/* Pull certifications upward */
+.cert-section {
+  padding-top: 0px !important;
+  margin-top: 0px !important;
+}
+
+.cert-title {
+  margin-top: 0px !important;
+  padding-top: 0px !important;
+}
+@media (max-width: 768px) {
+
+  .services-grid {
+    margin-bottom: -30px !important;
+  }
+
+  .dp-cta-wrapper {
+    margin-top: -10px !important;
+    margin-bottom: 8px !important;
+  }
+
+  .cert-section {
+    margin-top: -50px !important;
+  }
+
+  .cert-title {
+    margin-top: -8px !important;
+  }
+}
+/* ===== BALANCED SPACING BETWEEN CTA BUTTON AND CERTIFICATES ===== */
+
+.services-grid {
+  margin-bottom: -10px !important;
+}
+
+.dp-cta-wrapper {
+  margin-top: 4px !important;
+  margin-bottom: 12px !important;   /* small clean gap */
+}
+
+.cert-section {
+  padding-top: 6px !important;
+  margin-top: 0px !important;
+}
+
+.cert-title {
+  margin-top: 4px !important;
+  padding-top: 0px !important;
+}
+/* Pull certificates section upward including the CTA button */
+.cert-section {
+  margin-top: -40px !important;   /* moves whole block upward */
+}
+
+.dp-cta-wrapper {
+  margin-bottom: 6px !important;  /* reduce space under button */
+}

@@ -1615,8 +1615,8 @@ body.dark .cta-glow-btn {
 }
 @media (max-width: 768px) {
   .dp-cta-wrapper {
-    margin-top: -60px !important;   /* stronger upward shift */
-    margin-bottom: 10px !important;
+    margin-top: -45px !important;   /* stronger upward shift */
+    margin-bottom: 15px !important;
   }
 
   /* Also tighten gap from team carousel */
@@ -1628,5 +1628,15 @@ body.dark .cta-glow-btn {
 
   .team-dots {
     margin-bottom: 6px !important;
+  }
+}
+@media (max-width: 768px) {
+  .network-pro-section .dp-cta-wrapper {
+    margin-bottom: 60px !important;
+  }
+}
+@media (max-width: 768px) {
+  .hero-container .dp-cta-wrapper {
+    margin-top: 20px !important;
   }
 }

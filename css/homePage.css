@@ -1640,3 +1640,54 @@ body.dark .cta-glow-btn {
     margin-top: 20px !important;
   }
 }
+@media (max-width: 768px) {
+  .network-pro-section .dp-cta-wrapper {
+    margin-top: 40px !important;
+  }
+}
+@media (max-width: 768px) {
+  .network-pro-section .dp-cta-wrapper {
+    position: relative !important;
+    top: 55px !important;
+  }
+}
+/* HARDCODED FIX FOR NETWORKING SECTION CTA SPACING */
+@media (max-width: 768px) {
+
+  /* Force space after the networking slider */
+  .networking-section,
+  .network-pro-section,
+  .network-carousel,
+  .team-carousel {
+    margin-bottom: 60px !important;
+    padding-bottom: 30px !important;
+  }
+
+  /* Now move the CTA wrapper itself */
+  .networking-section .dp-cta-wrapper,
+  .network-pro-section .dp-cta-wrapper {
+    margin-top: 40px !important;
+    margin-bottom: 30px !important;
+    position: relative !important;
+    top: 20px !important;
+  }
+
+  /* Extra safety in case something overlaps */
+  .networking-section {
+    padding-bottom: 70px !important;
+  }
+}
+
+/* Move CTA button after roadmap slightly down */
+@media (max-width: 768px) {
+
+  .roadmap-section .dp-cta-wrapper,
+  .process-section .dp-cta-wrapper {
+    margin-top: 30px !important;
+    margin-bottom: 20px !important;
+  }
+
+  .roadmap-section {
+    padding-bottom: 40px !important;
+  }
+}
